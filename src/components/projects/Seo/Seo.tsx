@@ -1,6 +1,5 @@
 import Head from "next/head";
-import { totalmem } from "os";
-import { FC, ReactNode } from "react";
+import { FC } from "react";
 
 export type HeadProps = {
   title: string;
