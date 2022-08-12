@@ -1,13 +1,13 @@
 import Head from 'next/head';
 import { FC } from 'react';
 
-export type HeadProps = {
+export type SeoProps = {
   title: string;
   description: string;
   icon: string;
 };
 
-export const Seo: FC<HeadProps> = ({ title, description, icon }) => {
+export const Seo: FC<SeoProps> = ({ title, description, icon }) => {
   return (
     <Head>
       <title>{title}</title>
