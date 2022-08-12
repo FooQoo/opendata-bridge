@@ -1,7 +1,7 @@
-import Image from "next/image";
-import { FC } from "react";
+import Image from 'next/image';
+import { FC } from 'react';
 
-import styles from "./Footer.module.scss";
+import styles from './Footer.module.scss';
 
 export const Footer: FC = () => {
   return (
@@ -11,7 +11,7 @@ export const Footer: FC = () => {
         target="_blank"
         rel="noopener noreferrer"
       >
-        Powered by{" "}
+        Powered by{' '}
         <span className={styles.logo}>
           <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
         </span>

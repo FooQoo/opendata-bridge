@@ -1,8 +1,8 @@
-import { Layout } from "components/projects/Layout/Layout";
-import { Seo } from "components/projects/Seo/Seo";
-import type { NextPage } from "next";
+import { Layout } from 'components/projects/Layout/Layout';
+import { Seo } from 'components/projects/Seo/Seo';
+import type { NextPage } from 'next';
 
-import styles from "../styles/Home.module.scss";
+import styles from '../styles/Home.module.scss';
 
 const Home: NextPage = () => {
   return (
@@ -15,7 +15,7 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <p className={styles.description}>
-          Get started by editing{" "}
+          Get started by editing{' '}
           <code className={styles.code}>pages/index.tsx</code>
         </p>
 
