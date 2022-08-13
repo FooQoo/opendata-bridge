@@ -1,4 +1,4 @@
-import articlesFeatcher, { fetchArticlePath } from 'lib/articlesFetcher';
+import articlesFeatcher, { fetchArticlePath } from 'lib/axios/articlesFetcher';
 import useSWR from 'swr';
 
 export default function useArticles() {
