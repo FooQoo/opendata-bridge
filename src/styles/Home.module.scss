@@ -1,3 +1,5 @@
+@import 'mixin';
+
 .main {
   min-height: 100vh;
   padding: 4rem 0;
@@ -22,6 +24,10 @@
   font-size: 1.1rem;
   font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
     Bitstream Vera Sans Mono, Courier New, monospace;
+
+  @include darkmode {
+    background: #111;
+  }
 }
 
 .grid {
@@ -30,6 +36,11 @@
   justify-content: center;
   flex-wrap: wrap;
   max-width: 800px;
+
+  @include md {
+    width: 100%;
+    flex-direction: column;
+  }
 }
 
 .card {
@@ -60,21 +71,8 @@
     font-size: 1.25rem;
     line-height: 1.5;
   }
-}
 
-@media (max-width: 600px) {
-  .grid {
-    width: 100%;
-    flex-direction: column;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .card,
-  .footer {
-    border-color: #222;
-  }
-  .code {
+  @include darkmode {
     background: #111;
   }
 }

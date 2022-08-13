@@ -1,3 +1,5 @@
+@import 'styles/mixin';
+
 .footer {
   display: flex;
   flex: 1;
@@ -17,10 +19,14 @@
     height: 1em;
     margin-left: 0.5rem;
 
-    @media (prefers-color-scheme: dark) {
+    @include darkmode {
       img {
         filter: invert(1);
       }
     }
+  }
+
+  @include darkmode {
+    border-color: #222;
   }
 }

@@ -4,7 +4,13 @@
     "at-rule-no-unknown": [
       true,
       {
-        "ignoreAtRules": ["extends"]
+        "ignoreAtRules": [
+          "extends",
+          "mixin",
+          "include",
+          "content",
+          "extend"
+        ]
       }
     ]
   },
