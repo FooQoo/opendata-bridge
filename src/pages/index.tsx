@@ -1,8 +1,12 @@
 import { Layout } from 'components/projects/Layout/Layout';
 import { Seo } from 'components/projects/Seo/Seo';
-import useArticles from 'hooks/useArticles';
+import useArticles, {
+  fetchArticlePath,
+  fetchArticles,
+} from 'hooks/useArticles';
 import type { NextPage } from 'next';
 import { Article } from 'pages/api/article/list';
+import { SWRConfig } from 'swr';
 
 import styles from '../styles/Home.module.scss';
 
@@ -55,4 +59,23 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export async function getStaticProps() {
+  // `getStaticProps` is executed on the server side.
+  const articles = await fetchArticles(fetchArticlePath);
+  return {
+    props: {
+      fallback: {
+        fetchArticlePath: articles,
+      },
+    },
+  };
+}
+
+export default function Page({ fallback }) {
+  // SWR hooks inside the `SWRConfig` boundary will use those values.
+  return (
+    <SWRConfig value={{ fallback }}>
+      <Home />
+    </SWRConfig>
+  );
+}
