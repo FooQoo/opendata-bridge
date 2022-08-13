@@ -3,9 +3,9 @@ import { Seo } from 'components/projects/Seo/Seo';
 import useArticles from 'hooks/useArticles';
 import articlesFeatcher, { fetchArticlePath } from 'lib/axios/articlesFetcher';
 import type { NextPage } from 'next';
-import { Article } from 'pages/api/article/list';
 import styles from 'styles/Home.module.scss';
 import { SWRConfig } from 'swr';
+import { Article } from 'types/article';
 
 const Articles: React.FC<{
   articles: Article[];

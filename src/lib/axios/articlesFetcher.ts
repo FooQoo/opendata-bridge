@@ -1,5 +1,5 @@
 import { axios } from 'lib/axios/axiosClient';
-import { Article } from 'pages/api/article/list';
+import { Article } from 'types/article';
 
 export const fetchArticlePath = '/api/article/list';
 
