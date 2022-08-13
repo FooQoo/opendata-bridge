@@ -1,7 +1,7 @@
 import axiosBase from 'axios';
 
 export const axios = axiosBase.create({
-  baseURL: 'http://localhost:3000',
+  baseURL: process.env.PROXY_API_HOST,
   headers: {
     'Content-Type': 'application/json',
   },

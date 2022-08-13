@@ -1,13 +1,9 @@
 import { Layout } from 'components/projects/Layout/Layout';
 import { Seo } from 'components/projects/Seo/Seo';
-import useArticles, {
-  articlesFeatcher,
-  fetchArticlePath,
-} from 'hooks/useArticles';
+import articlesFeatcher from 'lib/articleFetcher';
 import type { NextPage } from 'next';
 import { Article } from 'pages/api/article/list';
 import styles from 'styles/Home.module.scss';
-import { SWRConfig } from 'swr';
 
 const Articles: React.FC<{
   articles: Article[];
@@ -29,9 +25,7 @@ const Articles: React.FC<{
   );
 };
 
-const Home: NextPage = () => {
-  const { articles, isLoading, isError } = useArticles();
-
+const Home: NextPage<{ articles: Article[] }> = ({ articles }) => {
   return (
     <Layout>
       <Seo
@@ -47,34 +41,21 @@ const Home: NextPage = () => {
         </p>
 
         <div className={styles.grid}>
-          <Articles
-            articles={articles}
-            isLoading={isLoading}
-            isError={isError}
-          />
+          <Articles articles={articles} isLoading={false} isError={false} />
         </div>
       </main>
     </Layout>
   );
 };
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   // `getStaticProps` is executed on the server side.
-  const articles = await articlesFeatcher(fetchArticlePath);
+  const articles = await articlesFeatcher();
   return {
     props: {
-      fallback: {
-        fetchArticlePath: articles,
-      },
+      articles,
     },
   };
 }
 
-export default function Page({ fallback }: { fallback: Article[] }) {
-  // SWR hooks inside the `SWRConfig` boundary will use those values.
-  return (
-    <SWRConfig value={{ fallback }}>
-      <Home />
-    </SWRConfig>
-  );
-}
+export default Home;
