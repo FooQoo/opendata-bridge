@@ -1,4 +1,4 @@
-import { axios } from 'lib/axiosClient';
+import { axios } from 'lib/axios/axiosClient';
 import { Article } from 'pages/api/article/list';
 
 export const fetchArticlePath = '/api/article/list';
