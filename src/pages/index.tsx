@@ -1,14 +1,13 @@
 import { Layout } from 'components/projects/Layout/Layout';
 import { Seo } from 'components/projects/Seo/Seo';
 import useArticles, {
+  articlesFeatcher,
   fetchArticlePath,
-  fetchArticles,
 } from 'hooks/useArticles';
 import type { NextPage } from 'next';
 import { Article } from 'pages/api/article/list';
+import styles from 'styles/Home.module.scss';
 import { SWRConfig } from 'swr';
-
-import styles from '../styles/Home.module.scss';
 
 const Articles: React.FC<{
   articles: Article[];
@@ -61,7 +60,7 @@ const Home: NextPage = () => {
 
 export async function getStaticProps() {
   // `getStaticProps` is executed on the server side.
-  const articles = await fetchArticles(fetchArticlePath);
+  const articles = await articlesFeatcher(fetchArticlePath);
   return {
     props: {
       fallback: {
@@ -71,7 +70,7 @@ export async function getStaticProps() {
   };
 }
 
-export default function Page({ fallback }) {
+export default function Page({ fallback }: { fallback: Article[] }) {
   // SWR hooks inside the `SWRConfig` boundary will use those values.
   return (
     <SWRConfig value={{ fallback }}>
