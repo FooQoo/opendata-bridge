@@ -1,21 +1,12 @@
 import Articles from 'app/Articles';
 import { Layout } from 'components/projects/Layout/Layout';
-import { use } from 'react';
-import { Article } from 'types/article';
-
-import styles from '../styles/Home.module.scss';
-
-const articlesFeatcher: () => Promise<Article[]> = async () => {
-  const res = await fetch('http://localhost:3000/api/article/list', {
-    next: { revalidate: 30 },
-  });
-  const articles = await res.json();
-  return articles;
-};
+import articlesFeatcher from 'lib/axios/articlesFetcher';
+import { cache, Suspense, use } from 'react';
+import styles from 'styles/Home.module.scss';
 
 const Home = () => {
-  // const { articles, isLoading, isError } = useArticles();
-  const articles = use(articlesFeatcher());
+  // If you use ssg, you can use the following code.
+  const articles = use(cache(articlesFeatcher)());
 
   return (
     <Layout>
@@ -25,33 +16,14 @@ const Home = () => {
           <code className={styles.code}>app/page.tsx</code>
         </p>
 
-        <div className={styles.grid}>
-          <Articles articles={articles} />
-        </div>
+        <Suspense fallback={<div>Loading...</div>}>
+          <div className={styles.grid}>
+            <Articles articles={articles} />
+          </div>
+        </Suspense>
       </main>
     </Layout>
   );
 };
 
 export default Home;
-
-// export async function getStaticProps() {
-//   // `getStaticProps` is executed on the server side.
-//   const articles = await articlesFeatcher();
-//   return {
-//     props: {
-//       fallback: {
-//         fetchArticlePath: articles,
-//       },
-//     },
-//   };
-// }
-
-// export default function Page({ fallback }: { fallback: Article[] }) {
-//   // SWR hooks inside the `SWRConfig` boundary will use those values.
-//   return (
-//     <SWRConfig value={{ fallback }}>
-//       <Home />
-//     </SWRConfig>
-//   );
-// }

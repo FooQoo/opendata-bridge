@@ -1,3 +1,5 @@
+import '../styles/globals.scss';
+
 export default function RootLayout({
   children,
 }: {
@@ -5,7 +7,6 @@ export default function RootLayout({
 }) {
   return (
     <html>
-      <head />
       <body>{children}</body>
     </html>
   );

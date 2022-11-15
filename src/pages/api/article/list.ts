@@ -31,5 +31,6 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Article[]>
 ) {
+  await sleepService(3000);
   res.status(200).json(stub.sort(() => Math.random() - 0.5));
 }

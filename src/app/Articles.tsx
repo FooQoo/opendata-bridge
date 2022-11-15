@@ -1,14 +1,20 @@
 'use client';
+import articlesFeatcher from 'lib/axios/articlesFetcher';
 import Link from 'next/link';
+import { FC, use } from 'react';
 import styles from 'styles/Home.module.scss';
 import { Article } from 'types/article';
 
-const Articles: React.FC<{
+export type ArticlesProps = {
   articles: Article[];
-}> = ({ articles }) => {
+};
+
+const Articles: FC<ArticlesProps> = ({ articles }) => {
+  const articleList =
+    articles && articles.length > 0 ? articles : use(articlesFeatcher());
   return (
     <>
-      {articles.map(({ link, title, description }, index) => (
+      {articleList.map(({ link, title, description }, index) => (
         <Link href={link} className={styles.card} key={index}>
           <h2>{title} &rarr;</h2>
           <p>{description}</p>
