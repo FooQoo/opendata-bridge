@@ -11,7 +11,10 @@ export type ArticlesProps = {
 
 const Articles: FC<ArticlesProps> = ({ articles }) => {
   const articleList =
-    articles && articles.length > 0 ? articles : use(articlesFeatcher());
+    articles && articles.length > 0 // if empty, fetch Article
+      ? articles
+      : use(articlesFeatcher());
+
   return (
     <>
       {articleList.map(({ link, title, description }, index) => (
