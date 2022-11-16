@@ -1,7 +1,8 @@
 import Articles from 'app/Articles';
 import articlesFeatcher from 'lib/axios/articlesFetcher';
 import { cache, Suspense, use } from 'react';
-import styles from 'styles/Home.module.scss';
+
+import styles from './Home.module.scss';
 
 const Home = () => {
   // If you use ssg, you can use the following code.

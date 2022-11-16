@@ -2,8 +2,9 @@
 import articlesFeatcher from 'lib/axios/articlesFetcher';
 import Link from 'next/link';
 import { FC, use } from 'react';
-import styles from 'styles/Home.module.scss';
 import { Article } from 'types/article';
+
+import styles from './Articles.module.scss';
 
 export type ArticlesProps = {
   articles: Article[];
