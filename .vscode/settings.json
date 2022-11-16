@@ -7,7 +7,12 @@
     "strings": true
   },
   "typescript.preferences.importModuleSpecifier": "non-relative",
-  "stylelint.validate": ["css", "scss"],
+  "stylelint.validate": [
+    "css",
+    "scss"
+  ],
   "scss.validate": false,
-  "css.validate": false
+  "css.validate": false,
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true
 }

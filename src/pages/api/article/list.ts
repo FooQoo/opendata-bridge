@@ -1,5 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
+import sleepService from 'service/sleepService';
 import { Article } from 'types/article';
 
 const stub = [
@@ -26,9 +27,10 @@ const stub = [
   },
 ];
 
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Article[]>
 ) {
-  res.status(200).json(stub);
+  await sleepService(3000);
+  res.status(200).json(stub.sort(() => Math.random() - 0.5));
 }
