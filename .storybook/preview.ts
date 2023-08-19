@@ -1,6 +1,6 @@
 import type { Preview } from '@storybook/react';
 import Image from 'next/image';
-import "styles/globals.scss";
+import "app/globals.scss";
 
 const preview: Preview = {
   parameters: {
