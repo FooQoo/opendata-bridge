@@ -1,13 +1,11 @@
 'use client';
+import Article from 'components/molecules/Article/Article';
 import articlesFeatcher from 'lib/axios/articlesFetcher';
-import Link from 'next/link';
 import { FC, use } from 'react';
-import { Article } from 'types/article';
-
-import styles from './Articles.module.scss';
+import { ArticleProps } from 'types/article';
 
 export type ArticlesProps = {
-  articles: Article[];
+  articles: ArticleProps[];
 };
 
 const Articles: FC<ArticlesProps> = ({ articles }) => {
@@ -19,10 +17,12 @@ const Articles: FC<ArticlesProps> = ({ articles }) => {
   return (
     <>
       {articleList.map(({ link, title, description }, index) => (
-        <Link href={link} className={styles.card} key={index}>
-          <h2>{title} &rarr;</h2>
-          <p>{description}</p>
-        </Link>
+        <Article
+          key={index}
+          link={link}
+          title={title}
+          description={description}
+        />
       ))}
     </>
   );
