@@ -1,4 +1,4 @@
-import Articles from 'app/Articles';
+import ArticleList from 'components/organisms/ArticleList/ArticleList';
 import articlesFeatcher from 'lib/axios/articlesFetcher';
 import { cache, Suspense, use } from 'react';
 
@@ -15,9 +15,7 @@ const Home = () => {
       </p>
 
       <Suspense fallback={<div>Loading...</div>}>
-        <div className={styles.grid}>
-          <Articles articles={articles} />
-        </div>
+        <ArticleList articles={articles} />
       </Suspense>
     </main>
   );

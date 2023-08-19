@@ -1,0 +1,15 @@
+@import 'app/_mixin';
+
+.grid {
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 800px;
+
+  @include md {
+    width: 100%;
+    flex-direction: column;
+  }
+}

@@ -4,18 +4,20 @@ import articlesFeatcher from 'lib/axios/articlesFetcher';
 import { FC, use } from 'react';
 import { ArticleProps } from 'types/article';
 
+import styles from './ArticleList.module.scss';
+
 export type ArticlesProps = {
   articles: ArticleProps[];
 };
 
-const Articles: FC<ArticlesProps> = ({ articles }) => {
+const ArticleList: FC<ArticlesProps> = ({ articles }) => {
   const articleList =
     articles && articles.length > 0 // if empty, fetch Article
       ? articles
       : use(articlesFeatcher());
 
   return (
-    <>
+    <div className={styles.grid}>
       {articleList.map(({ link, title, description }, index) => (
         <Article
           key={index}
@@ -24,8 +26,8 @@ const Articles: FC<ArticlesProps> = ({ articles }) => {
           description={description}
         />
       ))}
-    </>
+    </div>
   );
 };
 
-export default Articles;
+export default ArticleList;
