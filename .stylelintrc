@@ -13,6 +13,5 @@
         ]
       }
     ]
-  },
-  "extends": ["stylelint-config-prettier"]
+  }
 }
