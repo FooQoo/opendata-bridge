@@ -9,7 +9,10 @@
           "mixin",
           "include",
           "content",
-          "extend"
+          "extend",
+          "tailwind",
+          "layer",
+          "apply"
         ]
       }
     ]
