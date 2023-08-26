@@ -23,7 +23,7 @@ const Home = () => {
   }
 
   return (
-    <main className={styles.main}>
+    <>
       <div className={styles.description}>
         <SearchInput />
       </div>
@@ -31,7 +31,7 @@ const Home = () => {
       <Suspense fallback={<div>Loading...</div>}>
         <UsercaseList usecases={usecases} />
       </Suspense>
-    </main>
+    </>
   );
 };
 
