@@ -1,7 +1,9 @@
 'use client';
 import SearchInput from 'components/atoms/SearchInput/SearchInput';
 import UsercaseList from 'components/organisms/UsecaseList/UsecaseList';
-import usecaseFeatcher from 'lib/axios/usecaseFetcher';
+import usecaseSearchFeatcher, {
+  fetchUsecasePath,
+} from 'lib/axios/usecaseSearchFetcher';
 import { Suspense } from 'react';
 import { useRecoilValue } from 'recoil';
 import { queryState } from 'recoil/queryState';
@@ -14,8 +16,8 @@ const Home = () => {
   const query = useRecoilValue(queryState);
 
   const { data: usecases = [], error } = useSWR(
-    ['/api/usecase/list', query],
-    ([_, query]) => usecaseFeatcher(query)
+    [fetchUsecasePath, query],
+    ([_, query]) => usecaseSearchFeatcher(query)
   );
 
   if (error) {

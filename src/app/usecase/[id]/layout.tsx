@@ -1,5 +1,3 @@
-import ProjectLayout from 'components/projects/ProjectLayout/ProjectLayout';
-
 export const metadata = {
   title: 'OpenData Bridge',
   description: '市民とオープンデータをつなぐプラットフォーム',
