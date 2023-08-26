@@ -16,11 +16,11 @@ const ProjectLayout: FC<{ children: ReactNode }> = ({ children }) => {
     <SWRConfig>
       <RecoilRoot>
         <Providers>
-          <div className={styles.container}>
+          <main className={styles.container}>
             <Header />
-            <main className={styles.main}>{children}</main>
+            <div className={styles.main}>{children}</div>
             <Footer />
-          </div>
+          </main>
         </Providers>
       </RecoilRoot>
     </SWRConfig>
