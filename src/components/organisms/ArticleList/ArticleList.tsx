@@ -1,7 +1,6 @@
 'use client';
 import Article from 'components/molecules/Article/Article';
-import articlesFeatcher from 'lib/axios/articlesFetcher';
-import { FC, use } from 'react';
+import { FC } from 'react';
 import { ArticleProps } from 'types/article';
 
 import styles from './ArticleList.module.scss';
@@ -11,10 +10,7 @@ export type ArticlesProps = {
 };
 
 const ArticleList: FC<ArticlesProps> = ({ articles }) => {
-  const articleList =
-    articles && articles.length > 0 // if empty, fetch Article
-      ? articles
-      : use(articlesFeatcher());
+  const articleList = articles && articles.length > 0 ? articles : [];
 
   return (
     <div className={styles.grid}>
