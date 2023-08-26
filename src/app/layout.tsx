@@ -15,8 +15,8 @@ const Layout: FC<{ children: ReactNode }> = ({ children }) => {
   return (
     <html>
       <body>
-        <RecoilRoot>
-          <SWRConfig>
+        <SWRConfig>
+          <RecoilRoot>
             <Providers>
               <div className={styles.container}>
                 <Header />
@@ -24,8 +24,8 @@ const Layout: FC<{ children: ReactNode }> = ({ children }) => {
                 <Footer />
               </div>
             </Providers>
-          </SWRConfig>
-        </RecoilRoot>
+          </RecoilRoot>
+        </SWRConfig>
       </body>
     </html>
   );

@@ -7,7 +7,7 @@ export default function articlesFeatcher(q: string) {
   return axios
     .get(fetchArticlePath, {
       params: {
-        q,
+        q: q === '' ? undefined : q,
       },
     })
     .then((res) => {

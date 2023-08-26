@@ -32,10 +32,16 @@ export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   const query = (searchParams.get('q') as string) || '';
 
-  const json = stub.filter((s) => {
-    return s.title.includes(query) || s.description.includes(query);
-  });
+  let json = stub;
 
+  if (query) {
+    json = stub.filter((s) => {
+      return (
+        s.title.toLocaleLowerCase().includes(query.toLocaleLowerCase()) ||
+        s.description.toLocaleLowerCase().includes(query.toLocaleLowerCase())
+      );
+    });
+  }
   return new Response(JSON.stringify(json), {
     status: 200,
   });

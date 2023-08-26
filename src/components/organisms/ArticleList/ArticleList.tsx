@@ -1,20 +1,22 @@
-'use client';
 import Article from 'components/molecules/Article/Article';
-import { FC } from 'react';
-import { ArticleProps } from 'types/article';
+import articlesFeatcher from 'lib/axios/articlesFetcher';
+import { FC, useEffect } from 'react';
+import useSWR from 'swr';
 
 import styles from './ArticleList.module.scss';
 
-export type ArticlesProps = {
-  articles: ArticleProps[];
-};
+const ArticleList: FC<{ query: string }> = ({ query }: { query: string }) => {
+  const { data, error } = useSWR(['/api/article/list', query], ([_, query]) =>
+    articlesFeatcher(query)
+  );
 
-const ArticleList: FC<ArticlesProps> = ({ articles }) => {
-  const articleList = articles && articles.length > 0 ? articles : [];
+  if (error) {
+    console.error('Error fetching articles:', error);
+  }
 
   return (
     <div className={styles.grid}>
-      {articleList.map(({ link, title, description }, index) => (
+      {data?.map(({ link, title, description }, index) => (
         <Article
           key={index}
           link={link}
