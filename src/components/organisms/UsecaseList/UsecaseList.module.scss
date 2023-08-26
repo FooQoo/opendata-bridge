@@ -1,0 +1,10 @@
+@import 'app/_mixin';
+
+.grid {
+  @apply flex flex-wrap justify-center items-center;
+
+  @include md {
+    width: 100%;
+    flex-direction: column;
+  }
+}
