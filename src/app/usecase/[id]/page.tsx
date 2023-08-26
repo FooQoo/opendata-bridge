@@ -1,3 +1,4 @@
+import Dialog from 'app/usecase/[id]/Dialog';
 import usecaseDetailFeatcher from 'lib/axios/usecaseDetailFetcher';
 
 const Detail = async ({ params }: { params: { id: string } }) => {
@@ -6,13 +7,8 @@ const Detail = async ({ params }: { params: { id: string } }) => {
   const res = await usecaseDetailFeatcher(params.id);
 
   return (
-    <div>
-      <h1>Detail: {params.id}</h1>
-      <p>{res.template_title}</p>
-      <p>{res.template_description}</p>
-      <p>{res.search_prompt}</p>
-      <p>{res.data_fetch_prompt}</p>
-      <p>{res.data_format_prompt}</p>
+    <div className="h-full" style={{ width: '80%' }}>
+      <Dialog {...res} />
     </div>
   );
 };

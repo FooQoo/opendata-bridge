@@ -4,7 +4,7 @@ import styles from './Header.module.scss';
 
 export const Header: FC = () => {
   return (
-    <header>
+    <header className={styles.header}>
       <h1 className={styles.title}>OpenData Bridge</h1>
     </header>
   );
