@@ -1,7 +1,7 @@
 'use client';
 import SearchInput from 'components/atoms/SearchInput/SearchInput';
-import ArticleList from 'components/organisms/ArticleList/ArticleList';
-import articlesFeatcher from 'lib/axios/articlesFetcher';
+import UsercaseList from 'components/organisms/UsecaseList/UsecaseList';
+import usecaseFeatcher from 'lib/axios/usecaseFetcher';
 import { Suspense } from 'react';
 import { useRecoilValue } from 'recoil';
 import { queryState } from 'recoil/queryState';
@@ -13,13 +13,13 @@ const Home = () => {
   // If you use ssg, you can use the following code.
   const query = useRecoilValue(queryState);
 
-  const { data: articles = [], error } = useSWR(
-    ['/api/article/list', query],
-    ([_, query]) => articlesFeatcher(query)
+  const { data: usecases = [], error } = useSWR(
+    ['/api/usecase/list', query],
+    ([_, query]) => usecaseFeatcher(query)
   );
 
   if (error) {
-    console.error('Error fetching articles:', error);
+    console.error('Error fetching usecases:', error);
   }
 
   return (
@@ -29,7 +29,7 @@ const Home = () => {
       </div>
 
       <Suspense fallback={<div>Loading...</div>}>
-        <ArticleList articles={articles} />
+        <UsercaseList usecases={usecases} />
       </Suspense>
     </main>
   );
