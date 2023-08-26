@@ -2,8 +2,12 @@
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Input } from '@nextui-org/react';
+import { useRecoilState } from 'recoil';
+import { queryState } from 'recoil/queryState';
 
 const SearchInput = () => {
+  const [query, setQueryState] = useRecoilState(queryState);
+
   return (
     <Input
       label="Search"
@@ -33,6 +37,8 @@ const SearchInput = () => {
           <FontAwesomeIcon icon={faMagnifyingGlass} />
         </div>
       }
+      value={query}
+      onChange={(e) => setQueryState(e.target.value)}
     />
   );
 };

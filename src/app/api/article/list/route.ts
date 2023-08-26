@@ -1,4 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import { NextApiRequest } from 'next';
 import sleepService from 'service/sleepService';
 
 const stub = [
@@ -26,8 +27,14 @@ const stub = [
 ];
 
 export async function GET(req: Request) {
-  await sleepService(3000);
-  const json = stub.sort(() => Math.random() - 0.5);
+  console.info('GET ' + req.url);
+
+  const { searchParams } = new URL(req.url);
+  const query = (searchParams.get('q') as string) || '';
+
+  const json = stub.filter((s) => {
+    return s.title.includes(query) || s.description.includes(query);
+  });
 
   return new Response(JSON.stringify(json), {
     status: 200,

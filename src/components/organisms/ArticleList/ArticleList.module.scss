@@ -1,12 +1,7 @@
 @import 'app/_mixin';
 
 .grid {
-  min-height: 50vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  max-width: 800px;
+  @apply flex flex-wrap justify-center items-center;
 
   @include md {
     width: 100%;
