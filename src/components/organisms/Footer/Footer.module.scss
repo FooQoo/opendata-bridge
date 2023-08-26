@@ -18,15 +18,5 @@
   .logo {
     height: 1em;
     margin-left: 0.5rem;
-
-    @include darkmode {
-      img {
-        filter: invert(1);
-      }
-    }
-  }
-
-  @include darkmode {
-    border-color: #222;
   }
 }

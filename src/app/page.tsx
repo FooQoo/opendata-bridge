@@ -1,3 +1,4 @@
+import SearchInput from 'components/atoms/SearchInput/SearchInput';
 import ArticleList from 'components/organisms/ArticleList/ArticleList';
 import articlesFeatcher from 'lib/axios/articlesFetcher';
 import { cache, Suspense, use } from 'react';
@@ -10,9 +11,9 @@ const Home = () => {
 
   return (
     <main className={styles.main}>
-      <p className={styles.description}>
-        Get started by editing <code className={styles.code}>app/page.tsx</code>
-      </p>
+      <div className={styles.description}>
+        <SearchInput />
+      </div>
 
       <Suspense fallback={<div>Loading...</div>}>
         <ArticleList articles={articles} />

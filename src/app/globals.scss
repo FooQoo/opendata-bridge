@@ -23,17 +23,10 @@
 
 html {
   @extend %body-shared;
-  @include darkmode {
-    color-scheme: dark;
-  }
 }
 
 body {
   @extend %body-shared;
-  @include darkmode {
-    color: white;
-    background: black;
-  }
 }
 
 a {

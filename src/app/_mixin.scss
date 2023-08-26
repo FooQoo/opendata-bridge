@@ -1,9 +1,3 @@
-@mixin darkmode {
-  @media (prefers-color-scheme: dark) {
-    @content;
-  }
-}
-
 @mixin md {
   @media (max-width: 600px) {
     @content;
