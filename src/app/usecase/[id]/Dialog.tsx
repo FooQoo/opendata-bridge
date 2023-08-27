@@ -1,6 +1,5 @@
 'use client';
 
-import Chat from 'components/organisms/Chat/Chat';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { UsecaseProps } from 'types/usecase';
@@ -90,8 +89,6 @@ const Dialog = (usecase: UsecaseProps) => {
           <p>{usecase.template_description}</p>
         </div>
       </div>
-
-      <Chat />
 
       <div className="h-full">{dialogComponentList}</div>
     </div>

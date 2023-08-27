@@ -1,6 +1,5 @@
 import { type UseChatHelpers } from 'ai/react';
 import { ButtonScrollToBottom } from 'components/chatbot/button-scroll-to-bottom';
-import { FooterText } from 'components/chatbot/footer';
 import { PromptForm } from 'components/chatbot/prompt-form';
 import { Button } from 'components/chatbot/ui/button';
 import { IconRefresh, IconStop } from 'components/chatbot/ui/icons';
@@ -69,7 +68,6 @@ export function ChatPanel({
             setInput={setInput}
             isLoading={isLoading}
           />
-          <FooterText className="hidden sm:block" />
         </div>
       </div>
     </div>
