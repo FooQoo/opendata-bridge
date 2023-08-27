@@ -7,6 +7,7 @@ import {
   NavbarItem,
 } from '@nextui-org/react';
 import Image from 'next/image';
+import NextLink from 'next/link';
 import { FC } from 'react';
 
 import styles from './Header.module.scss';
@@ -15,10 +16,10 @@ export const Header: FC = () => {
   return (
     <Navbar className={styles.header}>
       <NavbarBrand>
-        <div className={styles.logo}>
+        <Link href="/" color="foreground" as={NextLink}>
           <Image src="/logo.jpg" alt="logo" width={40} height={40} />
-        </div>
-        <p className="font-bold text-inherit">Opendata Bridge</p>
+          <p className="font-bold text-inherit">Opendata Bridge</p>
+        </Link>
       </NavbarBrand>
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         {/* <NavbarItem>

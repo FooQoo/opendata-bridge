@@ -30,6 +30,7 @@ const Home = () => {
         <div className={styles.background}></div>
         <div className={styles.text}>
           <h1>Opendata Bridge</h1>
+          <p>~ 使う人と作る人を繋げたい ~</p>
         </div>
       </div>
       <div className={styles.description}>
