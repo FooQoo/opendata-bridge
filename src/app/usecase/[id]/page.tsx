@@ -11,7 +11,7 @@ const Detail = async ({ params }: { params: { id: string } }) => {
 
   return (
     <div className="h-full" style={{ width: '80%' }}>
-      <Chat id={params.id} />
+      <Chat id={params.id} usecase={res} />
     </div>
   );
 };
