@@ -7,7 +7,18 @@ module.exports = {
     './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontChat: {
+        body: [
+          'Hiragino Kaku Gothic ProN',
+          'Helvetica Neue',
+          'Arial',
+          'Hiragino Sans',
+          'Meiryo',
+          'sans-serif',
+        ],
+      },
+    },
   },
   // darkMode: 'class',
   plugins: [nextui()],

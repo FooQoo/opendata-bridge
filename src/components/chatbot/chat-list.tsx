@@ -1,6 +1,6 @@
+import { Divider } from '@nextui-org/react';
 import { type Message } from 'ai';
 import { ChatMessage } from 'components/chatbot/chat-message';
-import { Separator } from 'components/chatbot/ui/separator';
 
 export interface ChatList {
   messages: Message[];
@@ -16,9 +16,7 @@ export function ChatList({ messages }: ChatList) {
       {messages.map((message, index) => (
         <div key={index}>
           <ChatMessage message={message} />
-          {index < messages.length - 1 && (
-            <Separator className="my-4 md:my-8" />
-          )}
+          {index < messages.length - 1 && <Divider className="my-4 md:my-8" />}
         </div>
       ))}
     </div>

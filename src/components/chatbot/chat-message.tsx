@@ -1,7 +1,9 @@
 // Inspired by Chatbot-UI and modified to fit the needs of this project
 // @see https://github.com/mckaywrigley/chatbot-ui/blob/main/components/Chat/ChatMessage.tsx
 
+import { Avatar } from '@nextui-org/react';
 import { Message } from 'ai';
+import styles from 'components/chatbot/chat-message.module.scss';
 import { MemoizedReactMarkdown } from 'components/chatbot/markdown';
 import { CodeBlock } from 'components/chatbot/ui/codeblock';
 import { IconOpenAI, IconUser } from 'components/chatbot/ui/icons';
@@ -12,12 +14,9 @@ export interface ChatMessageProps {
   message: Message;
 }
 
-export function ChatMessage({ message, ...props }: ChatMessageProps) {
+export function ChatMessage({ message }: ChatMessageProps) {
   return (
-    <div
-      className={'group relative mb-4 flex items-start md:-ml-12'}
-      {...props}
-    >
+    <div className={styles.main}>
       <div
         className={
           'flex h-8 w-8 shrink-0 select-none items-center justify-center rounded-md border shadow ' +
@@ -27,7 +26,16 @@ export function ChatMessage({ message, ...props }: ChatMessageProps) {
             : 'bg-primary text-primary-foreground'
         }
       >
-        {message.role === 'user' ? <IconUser /> : <IconOpenAI />}
+        {message.role === 'user' ? (
+          <Avatar isBordered radius="sm" icon={<IconUser />} />
+        ) : (
+          <Avatar
+            isBordered
+            radius="sm"
+            color="primary"
+            icon={<IconOpenAI />}
+          />
+        )}
       </div>
       <div className="flex-1 px-1 ml-4 space-y-2 overflow-hidden">
         <MemoizedReactMarkdown

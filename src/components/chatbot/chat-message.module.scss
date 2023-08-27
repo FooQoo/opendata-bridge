@@ -1,0 +1,5 @@
+.main {
+  -webkit-font-smoothing: antialiased;
+  @apply relative my-12 flex items-start;
+  @layer md:-ml-12 font-chat;
+}
