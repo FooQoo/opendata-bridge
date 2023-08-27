@@ -25,7 +25,13 @@ const Home = () => {
   }
 
   return (
-    <>
+    <div style={{ minWidth: '65%' }}>
+      <div className={styles.hero}>
+        <div className={styles.background}></div>
+        <div className={styles.text}>
+          <h1>Opendata Bridge</h1>
+        </div>
+      </div>
       <div className={styles.description}>
         <SearchInput />
       </div>
@@ -33,7 +39,7 @@ const Home = () => {
       <Suspense fallback={<div>Loading...</div>}>
         <UsercaseList usecases={usecases} />
       </Suspense>
-    </>
+    </div>
   );
 };
 

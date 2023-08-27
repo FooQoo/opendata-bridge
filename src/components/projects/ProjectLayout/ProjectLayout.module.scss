@@ -1,15 +1,15 @@
 .container {
-  padding: 0 10rem;
-  @apply flex flex-col items-center justify-center;
+  padding: 0 0;
+  @apply flex flex-col items-center justify-center w-full;
 }
 
 .main {
-  padding: 4rem 0;
+  padding: 0 10rem;
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  @apply container;
   @layer min-h-4/5;
+  @apply w-full;
 }
