@@ -1,15 +1,24 @@
+import { useDisclosure } from '@nextui-org/react';
+import UsecaseModal from 'components/molecules/UsecaseModal/UsecaseModal';
 import Link from 'next/link';
 import { getUsecaseUrl, UsecaseProps } from 'types/usecase';
 
 import styles from './Usecase.module.scss';
 
-const Usecase = (usecase: UsecaseProps) => (
-  <div className={styles.card}>
-    <Link href={getUsecaseUrl(usecase.id)}>
+const Usecase = (usecase: UsecaseProps) => {
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
+  return (
+    <div className={styles.card} onClick={onOpen}>
       <h2>{usecase.template_title}</h2>
       <p>{usecase.template_description}</p>
-    </Link>
-  </div>
-);
+      <UsecaseModal
+        usecase={usecase}
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+      />
+    </div>
+  );
+};
 
 export default Usecase;
