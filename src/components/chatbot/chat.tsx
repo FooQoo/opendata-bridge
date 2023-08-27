@@ -33,7 +33,7 @@ export function Chat({ id, initialMessages, usecase }: ChatProps) {
     });
   return (
     <>
-      <div className={'pb-[200px] pt-4 md:pt-10'}>
+      <div className={'pb-[200px] pt-4 md:pt-10 w-full'}>
         {messages.length ? (
           <>
             <ChatList messages={messages} />

@@ -1,4 +1,6 @@
 import { UseChatHelpers } from 'ai/react';
+import { Button } from 'components/chatbot/ui/button';
+import { IconArrowElbow } from 'components/chatbot/ui/icons';
 import { useEnterSubmit } from 'hooks/use-enter-submit';
 import { useRouter } from 'next/navigation';
 import * as React from 'react';
@@ -50,6 +52,16 @@ export function PromptForm({
           spellCheck={false}
           className="min-h-[60px] w-full resize-none bg-transparent py-[1.3rem] focus-within:outline-none sm:text-sm"
         />
+        <div className="absolute right-0 top-4 sm:right-4">
+          <Button
+            type="submit"
+            size="icon"
+            disabled={isLoading || input === ''}
+          >
+            <IconArrowElbow />
+            <span className="sr-only">Send message</span>
+          </Button>
+        </div>
       </div>
     </form>
   );
