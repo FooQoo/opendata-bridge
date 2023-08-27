@@ -2,8 +2,6 @@
 
 import { type Message } from 'ai';
 import { Button } from 'components/chatbot/ui/button';
-import { IconCheck, IconCopy } from 'components/chatbot/ui/icons';
-
 interface ChatMessageActionsProps extends React.ComponentProps<'div'> {
   message: Message;
 }

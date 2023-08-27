@@ -1,6 +1,5 @@
 'use client';
 
-import { Divider } from '@nextui-org/react';
 import { type Message, useChat } from 'ai/react';
 import { ChatList } from 'components/chatbot/chat-list';
 import { ChatPanel } from 'components/chatbot/chat-panel';

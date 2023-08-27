@@ -1,6 +1,4 @@
 import { UseChatHelpers } from 'ai/react';
-import { Button, buttonVariants } from 'components/chatbot/ui/button';
-import { IconArrowElbow, IconPlus } from 'components/chatbot/ui/icons';
 import { useEnterSubmit } from 'hooks/use-enter-submit';
 import { useRouter } from 'next/navigation';
 import * as React from 'react';

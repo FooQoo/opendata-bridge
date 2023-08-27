@@ -1,7 +1,6 @@
 import { useDisclosure } from '@nextui-org/react';
 import UsecaseModal from 'components/molecules/UsecaseModal/UsecaseModal';
-import Link from 'next/link';
-import { getUsecaseUrl, UsecaseProps } from 'types/usecase';
+import { UsecaseProps } from 'types/usecase';
 
 import styles from './Usecase.module.scss';
 

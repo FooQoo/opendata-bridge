@@ -1,24 +1,5 @@
 import { UseChatHelpers } from 'ai/react';
-import { ExternalLink } from 'components/chatbot/external-link';
-import { Button } from 'components/chatbot/ui/button';
-import { IconArrowRight } from 'components/chatbot/ui/icons';
-import { use } from 'react';
 import { UsecaseProps } from 'types/usecase';
-
-const exampleMessages = [
-  {
-    heading: 'Explain technical concepts',
-    message: `What is a "serverless function"?`,
-  },
-  {
-    heading: 'Summarize an article',
-    message: 'Summarize the following article for a 2nd grader: \n',
-  },
-  {
-    heading: 'Draft an email',
-    message: `Draft an email to my boss about the following: \n`,
-  },
-];
 
 export function EmptyScreen({
   setInput,
