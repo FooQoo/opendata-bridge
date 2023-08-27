@@ -1,7 +1,7 @@
 @import 'app/_mixin';
 
 .grid {
-  @apply flex flex-wrap justify-center items-center;
+  @apply flex flex-wrap justify-start items-center;
 
   @include md {
     width: 100%;

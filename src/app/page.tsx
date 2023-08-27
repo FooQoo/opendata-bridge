@@ -38,6 +38,7 @@ const Home = () => {
       </div>
 
       <Suspense fallback={<div>Loading...</div>}>
+        <p className="px-5 py-2">プロンプトテンプレート</p>
         <UsercaseList usecases={usecases} />
       </Suspense>
     </div>

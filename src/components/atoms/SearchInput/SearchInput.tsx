@@ -39,6 +39,7 @@ const SearchInput = () => {
       }
       value={query}
       onChange={(e) => setQueryState(e.target.value)}
+      onClear={() => setQueryState('')}
     />
   );
 };
