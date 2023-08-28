@@ -40,6 +40,7 @@ export function EmptyScreen({
                 content: searchPrompt,
               })
             }
+            color="primary"
           >
             検索する
           </Button>

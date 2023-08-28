@@ -20,7 +20,6 @@ export function PromptForm({
 }: PromptProps) {
   const { formRef, onKeyDown } = useEnterSubmit();
   const inputRef = React.useRef<HTMLTextAreaElement>(null);
-  const router = useRouter();
 
   React.useEffect(() => {
     if (inputRef.current) {
@@ -40,7 +39,7 @@ export function PromptForm({
       }}
       ref={formRef}
     >
-      <div className="relative flex max-h-60 w-full grow flex-col overflow-hidden bg-background px-8 sm:rounded-md sm:border">
+      <div className="relative flex max-h-60 w-full grow flex-col overflow-hidden bg-background px-4 sm:rounded-md sm:border">
         <Textarea
           ref={inputRef}
           tabIndex={0}

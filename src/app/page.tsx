@@ -1,5 +1,6 @@
 'use client';
 import SearchInput from 'components/atoms/SearchInput/SearchInput';
+import { Footer } from 'components/organisms/Footer/Footer';
 import UsercaseList from 'components/organisms/UsecaseList/UsecaseList';
 import usecaseSearchFeatcher, {
   fetchUsecasePath,
@@ -41,6 +42,7 @@ const Home = () => {
         <p className="px-5 py-2">プロンプトテンプレート</p>
         <UsercaseList usecases={usecases} />
       </Suspense>
+      <Footer />
     </div>
   );
 };

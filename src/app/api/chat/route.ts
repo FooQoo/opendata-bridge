@@ -109,6 +109,8 @@ export async function POST(req: Request) {
           model: 'gpt-3.5-turbo-0613',
           functions,
         });
+      } else if (name === 'moderation') {
+        console.info('moderation', args.response);
       }
     },
   });
