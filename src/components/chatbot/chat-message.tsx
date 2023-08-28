@@ -1,7 +1,7 @@
 // Inspired by Chatbot-UI and modified to fit the needs of this project
 // @see https://github.com/mckaywrigley/chatbot-ui/blob/main/components/Chat/ChatMessage.tsx
 
-import { Avatar } from '@nextui-org/react';
+import { Avatar, Link } from '@nextui-org/react';
 import { Message } from 'ai';
 import styles from 'components/chatbot/chat-message.module.scss';
 import { MemoizedReactMarkdown } from 'components/chatbot/markdown';
@@ -44,6 +44,27 @@ export function ChatMessage({ message }: ChatMessageProps) {
           components={{
             p({ children }) {
               return <p className="mb-2 last:mb-0">{children}</p>;
+            },
+            ul({ children }) {
+              return <ul className="list-disc ml-4">{children}</ul>;
+            },
+            ol({ children }) {
+              return <ol className="list-decimal ml-4">{children}</ol>;
+            },
+            li({ children }) {
+              return <li className="mb-2 last:mb-0">{children}</li>;
+            },
+            a({ children, ...props }) {
+              return (
+                <Link
+                  isExternal
+                  className="text-primary"
+                  href={props.href}
+                  showAnchorIcon
+                >
+                  {children}
+                </Link>
+              );
             },
             code({ node, inline, className, children, ...props }) {
               if (children.length) {

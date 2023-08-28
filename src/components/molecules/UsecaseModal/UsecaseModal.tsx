@@ -31,21 +31,16 @@ const UsecaseModal = ({
             </ModalHeader>
             <ModalBody>
               <p>{usecase.template_description}</p>
-              <ul>
-                <li>{usecase.search_prompt}</li>
-                <li>{usecase.data_fetch_prompt}</li>
-                <li>{usecase.data_format_prompt}</li>
-              </ul>
             </ModalBody>
             <ModalFooter>
               <Button color="danger" variant="light" onPress={onClose}>
-                Close
+                あとで見る
               </Button>
               <Button
                 color="primary"
                 onPress={() => router.push(getUsecaseUrl(usecase.id))}
               >
-                Action
+                使ってみる
               </Button>
             </ModalFooter>
           </>

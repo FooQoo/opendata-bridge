@@ -5,9 +5,9 @@ import { ChatList } from 'components/chatbot/chat-list';
 import { ChatPanel } from 'components/chatbot/chat-panel';
 import { ChatScrollAnchor } from 'components/chatbot/chat-scroll-anchor';
 import { EmptyScreen } from 'components/chatbot/empty-screen';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
-import { UsecaseProps } from 'types/usecase';
+import { getMessageSearch, UsecaseProps } from 'types/usecase';
 
 export interface ChatProps extends React.ComponentProps<'div'> {
   initialMessages?: Message[];
@@ -16,14 +16,12 @@ export interface ChatProps extends React.ComponentProps<'div'> {
 }
 
 export function Chat({ id, initialMessages, usecase }: ChatProps) {
-  const [previewToken, setPreviewToken] = useState<string | null>('ai-token');
   const { messages, append, reload, stop, isLoading, input, setInput } =
     useChat({
       initialMessages,
       id,
       body: {
         id,
-        previewToken,
       },
       onResponse(response) {
         if (response.status === 401) {
@@ -31,6 +29,7 @@ export function Chat({ id, initialMessages, usecase }: ChatProps) {
         }
       },
     });
+
   return (
     <>
       <div className={'pb-[200px] pt-4 md:pt-10 w-full'}>
@@ -40,7 +39,7 @@ export function Chat({ id, initialMessages, usecase }: ChatProps) {
             <ChatScrollAnchor trackVisibility={isLoading} />
           </>
         ) : (
-          <EmptyScreen setInput={setInput} usecase={usecase} />
+          <EmptyScreen append={append} usecase={usecase} />
         )}
       </div>
 
