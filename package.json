@@ -62,7 +62,7 @@
     "husky": "8.0.3",
     "lint-staged": "14.0.1",
     "postcss": "^8.4.28",
-    "prettier": "3.0.2",
+    "prettier": "3.0.3",
     "sass": "1.66.1",
     "storybook": "^7.3.2",
     "stylelint": "15.10.3",
