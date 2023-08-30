@@ -38,13 +38,16 @@ export const Header = () => {
         </NavbarItem> */}
       </NavbarContent>
       <NavbarContent justify="end">
-        <NavbarItem className="hidden lg:flex">
+        {/* <NavbarItem className="hidden lg:flex">
           <Link href="#">Login</Link>
         </NavbarItem>
         <NavbarItem>
           <Button as={Link} color="primary" href="#" variant="flat">
             Sign Up
           </Button>
+        </NavbarItem> */}
+        <NavbarItem>
+          <p>ベータ版</p>
         </NavbarItem>
       </NavbarContent>
     </Navbar>
