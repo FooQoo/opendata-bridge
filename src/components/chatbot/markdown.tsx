@@ -1,7 +1,7 @@
-import { FC, memo } from 'react';
+import { FunctionComponent, memo } from 'react';
 import ReactMarkdown, { Options } from 'react-markdown';
 
-export const MemoizedReactMarkdown: FC<Options> = memo(
+export const MemoizedReactMarkdown: FunctionComponent<Options> = memo(
   ReactMarkdown,
   (prevProps, nextProps) =>
     prevProps.children === nextProps.children &&
