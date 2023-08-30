@@ -1,6 +1,4 @@
-import { FC } from 'react';
-
-const Head: FC = () => {
+const Head = () => {
   return (
     <>
       <title>OpenData Bridge</title>

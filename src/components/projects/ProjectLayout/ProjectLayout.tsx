@@ -4,13 +4,15 @@ import 'app/globals.scss';
 
 import { Providers } from 'app/provider';
 import { Header } from 'components/organisms/Header/Header';
-import { FC, ReactNode } from 'react';
+import { FunctionComponent, ReactNode } from 'react';
 import { RecoilRoot } from 'recoil';
 import { SWRConfig } from 'swr';
 
 import styles from './ProjectLayout.module.scss';
 
-const ProjectLayout: FC<{ children: ReactNode }> = ({ children }) => {
+const ProjectLayout: FunctionComponent<{ children: ReactNode }> = ({
+  children,
+}) => {
   return (
     <SWRConfig>
       <RecoilRoot>

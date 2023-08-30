@@ -8,11 +8,10 @@ import {
 } from '@nextui-org/react';
 import Image from 'next/image';
 import NextLink from 'next/link';
-import { FC } from 'react';
 
 import styles from './Header.module.scss';
 
-export const Header: FC = () => {
+export const Header = () => {
   return (
     <Navbar className={styles.header}>
       <NavbarBrand>

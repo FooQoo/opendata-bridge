@@ -4,8 +4,8 @@
 'use client';
 
 import { Button } from 'components/chatbot/ui/button';
-import { IconCheck, IconCopy, IconDownload } from 'components/chatbot/ui/icons';
-import { FC, memo } from 'react';
+import { IconDownload } from 'components/chatbot/ui/icons';
+import { FunctionComponent, memo } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { coldarkDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
@@ -54,7 +54,7 @@ export const generateRandomString = (length: number, lowercase = false) => {
   return lowercase ? result.toLowerCase() : result;
 };
 
-const CodeBlock: FC<Props> = memo(({ language, value }) => {
+const CodeBlock: FunctionComponent<Props> = memo(({ language, value }) => {
   const downloadAsFile = () => {
     if (typeof window === 'undefined') {
       return;
