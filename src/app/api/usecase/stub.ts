@@ -29,8 +29,12 @@ Aを代替する検索ワードを3つ考え、それぞれについて検索を
 - フォーマット
 - ライセンス
 `,
-    data_fetch_prompt:
-      '港区みどりの実態調査（第10次）公園緑地緑被状況一覧 (CSV形式)のリンクについて、download以下を除いたリンクを教えて頂けますか？',
-    data_format_prompt: '',
+  },
+  {
+    id: 1,
+    template_title: '東京都の育児施設を調査する',
+    template_description:
+      '東京都の育児施設の一覧をCSV形式でダウンロードします。',
+    search_prompt: [],
   },
 ];

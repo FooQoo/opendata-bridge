@@ -20,7 +20,7 @@ export interface ChatPanelProps
   id?: string;
 }
 
-export const MAX_QUESTION_COUNT = 2;
+export const MAX_QUESTION_COUNT = 4;
 
 export function ChatPanel({
   id,
