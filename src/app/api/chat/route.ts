@@ -66,7 +66,7 @@ const functions: ChatCompletionFunctions[] = [
 
 export async function POST(req: Request) {
   const { messages } = await req.json();
-  const recentMessages = messages.slice(-4);
+  // const recentMessages = messages.slice(-4);
 
   const response = await openai.createChatCompletion({
     model: 'gpt-3.5-turbo-0613',
