@@ -4,12 +4,11 @@
 }
 
 .main {
-  padding: 0 10rem;
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   @layer min-h-4/5;
-  @apply w-full;
+  @apply w-full md:px-40;
 }
