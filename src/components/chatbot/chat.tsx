@@ -9,6 +9,7 @@ import { ChatPanel, MAX_QUESTION_COUNT } from 'components/chatbot/chat-panel';
 import { ChatScrollAnchor } from 'components/chatbot/chat-scroll-anchor';
 import ConfirmFileModal from 'components/chatbot/confirm-file-modal';
 import { EmptyScreen } from 'components/chatbot/empty-screen';
+import OptionModal from 'components/chatbot/option-modal';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
@@ -45,9 +46,9 @@ export function Chat({ id, initialMessages, usecase }: ChatProps) {
 
   return (
     <>
-      <div className={'pb-[200px] pt-4 md:pt-10 w-full'}>
+      <div className={'pb-[300px] pt-4 md:pt-10 w-full flex justify-center'}>
         {messages.length ? (
-          <>
+          <div className="w-full">
             <ChatList messages={messages} />
             <ChatScrollAnchor trackVisibility={isLoading} />
             {isLimit && isLoading == false && canConfirmFile && (
@@ -55,6 +56,15 @@ export function Chat({ id, initialMessages, usecase }: ChatProps) {
                 append={append}
                 setCanConfirmFile={setCanConfirmFile}
               />
+            )}
+            {isLoading === false && isLimit === false && (
+              <div className="grid grid-cols-3 gap-x-10 mx-[400px]">
+                {usecase.option.map((o) => {
+                  return (
+                    <OptionModal key={o.title} prompt={o} append={append} />
+                  );
+                })}
+              </div>
             )}
             {canConfirmFile === false &&
               isFeedbacked === false &&
@@ -90,7 +100,7 @@ export function Chat({ id, initialMessages, usecase }: ChatProps) {
                 </a>
               </div>
             )}
-          </>
+          </div>
         ) : (
           <EmptyScreen append={append} usecase={usecase} />
         )}
