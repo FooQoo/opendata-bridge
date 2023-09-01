@@ -5,7 +5,7 @@ import { Avatar, Link } from '@nextui-org/react';
 import { Message } from 'ai';
 import { CodeBlock } from 'components/atoms/Chat/codeblock';
 import { IconOpenAI, IconUser } from 'components/atoms/Chat/icons';
-import styles from 'components/chatbot/chat-message.module.scss';
+import styles from 'components/molecules/Chat/chat-message.module.scss';
 import { MemoizedReactMarkdown } from 'components/molecules/Chat/markdown';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';

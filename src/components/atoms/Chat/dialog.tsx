@@ -1,7 +1,7 @@
 'use client';
 
 import * as DialogPrimitive from '@radix-ui/react-dialog';
-import { IconClose } from 'components/chatbot/ui/icons';
+import { IconClose } from 'components/atoms/Chat/icons';
 import * as React from 'react';
 
 const Dialog = DialogPrimitive.Root;

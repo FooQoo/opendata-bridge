@@ -1,4 +1,4 @@
-import { Chat } from 'components/chatbot/chat';
+import { Chat } from 'components/molecules/Chat/chat';
 import usecaseDetailFeatcher from 'lib/axios/usecaseDetailFetcher';
 
 const Detail = async ({ params }: { params: { id: string } }) => {
