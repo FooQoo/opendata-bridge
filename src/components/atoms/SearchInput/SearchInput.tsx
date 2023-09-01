@@ -13,6 +13,7 @@ const SearchInput = () => {
       label="Search"
       isClearable
       radius="lg"
+      className="w-[80%]"
       classNames={{
         label: 'text-black/50',
         input: [
@@ -31,10 +32,13 @@ const SearchInput = () => {
           '!cursor-text',
         ],
       }}
-      placeholder="Type to search..."
+      placeholder="お探しのプロンプトテンプレートを検索しましょう。例: 公園"
       startContent={
-        <div className="text-black/50 text-slate-400 pointer-events-none flex-shrink-0">
-          <FontAwesomeIcon icon={faMagnifyingGlass} />
+        <div className="text-black/50 text-slate-400 pointer-events-none flex justify-center items-center w-[24px] h-[36px]">
+          <FontAwesomeIcon
+            className="w-[24px] h-[24px]"
+            icon={faMagnifyingGlass}
+          />
         </div>
       }
       value={query}
