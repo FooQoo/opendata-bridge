@@ -69,9 +69,9 @@ export async function POST(req: Request) {
   // const recentMessages = messages.slice(-4);
 
   const response = await openai.createChatCompletion({
-    model: 'gpt-3.5-turbo-0613',
+    model: 'gpt-3.5-turbo-16k',
     stream: true,
-    messages: recentMessages,
+    messages,
     functions,
   });
 
