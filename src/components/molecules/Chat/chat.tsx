@@ -48,9 +48,13 @@ export function Chat({ id, initialMessages, usecase }: ChatProps) {
 
   return (
     <>
-      <div className={'pb-[300px] pt-4 md:pt-10 w-full flex justify-center'}>
+      <div
+        className={
+          'pb-[200px] md:pb-[300px] pt-4 md:pt-10 w-full flex justify-center'
+        }
+      >
         {messages.length ? (
-          <div className="w-full">
+          <div className="max-w-2xl">
             <ChatList messages={messages} />
             <ChatScrollAnchor trackVisibility={isLoading} />
             {isLimit && isLoading == false && canConfirmFile && (
@@ -60,7 +64,7 @@ export function Chat({ id, initialMessages, usecase }: ChatProps) {
               />
             )}
             {isLoading === false && isLimit === false && (
-              <div className="grid grid-cols-3 gap-x-10 mx-[400px]">
+              <div className="grid md:grid-cols-3 gap-4 md:w-full mx-[20%]">
                 {usecase.option.map((o) => {
                   return (
                     <OptionModal key={o.title} prompt={o} append={append} />

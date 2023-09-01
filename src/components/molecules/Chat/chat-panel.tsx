@@ -67,7 +67,7 @@ export function ChatPanel({
         )}
 
         <div className="flex justify-center">
-          <div className="mt-2 mb-10 max-w-2xl w-full border bg-background px-4 py-2 shadow-lg sm:rounded-xl sm:border md:py-4">
+          <div className="mt-2 md:mb-10 max-w-2xl w-full border bg-background px-4 py-2 shadow-lg sm:rounded-xl sm:border md:py-4">
             {systemMessageCount < MAX_QUESTION_COUNT ? (
               <PromptForm
                 onSubmit={async (value) => {

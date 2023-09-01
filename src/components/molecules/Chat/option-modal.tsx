@@ -9,19 +9,18 @@ const OptionModal = ({
   prompt: Prompt;
 }) => {
   return (
-    <div className="flex flex-col justify-center items-center w-full space-y-5">
-      <Button
-        color="primary"
-        onPress={() => {
-          append({
-            role: 'user',
-            content: prompt.content,
-          });
-        }}
-      >
-        {prompt.title}
-      </Button>
-    </div>
+    <Button
+      color="primary"
+      onPress={() => {
+        append({
+          role: 'user',
+          content: prompt.content,
+        });
+      }}
+      className="w-max-[20px]"
+    >
+      {prompt.title}
+    </Button>
   );
 };
 
