@@ -64,7 +64,7 @@ export function Chat({ id, initialMessages, usecase }: ChatProps) {
               />
             )}
             {isLoading === false && isLimit === false && (
-              <div className="grid md:grid-cols-3 gap-4 md:w-full mx-[20%]">
+              <div className="grid md:grid-cols-3 gap-4 md:w-full md:mx-0 mx-[20%]">
                 {usecase.option.map((o) => {
                   return (
                     <OptionModal key={o.title} prompt={o} append={append} />
