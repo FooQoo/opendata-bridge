@@ -1,12 +1,4 @@
-import {
-  Button,
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  useDisclosure,
-} from '@nextui-org/react';
+import { Button } from '@nextui-org/react';
 import { UseChatHelpers } from 'ai/react/dist';
 
 const ConfirmFileModal = ({

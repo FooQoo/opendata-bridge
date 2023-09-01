@@ -3,8 +3,8 @@
 
 'use client';
 
-import { Button } from 'components/chatbot/ui/button';
-import { IconDownload } from 'components/chatbot/ui/icons';
+import { Button } from 'components/atoms/Chat/button';
+import { IconDownload } from 'components/atoms/Chat/icons';
 import { FunctionComponent, memo } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { coldarkDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';

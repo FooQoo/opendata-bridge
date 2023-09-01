@@ -1,7 +1,7 @@
 'use client';
 
 import { type Message } from 'ai';
-import { Button } from 'components/chatbot/ui/button';
+import { Button } from 'components/atoms/Chat/button';
 interface ChatMessageActionsProps extends React.ComponentProps<'div'> {
   message: Message;
 }

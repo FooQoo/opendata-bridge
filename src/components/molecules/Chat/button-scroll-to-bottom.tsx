@@ -1,7 +1,7 @@
 'use client';
 
-import { Button, type ButtonProps } from 'components/chatbot/ui/button';
-import { IconArrowDown } from 'components/chatbot/ui/icons';
+import { Button, ButtonProps } from 'components/atoms/Chat/button';
+import { IconArrowDown } from 'components/atoms/Chat/icons';
 import { useAtBottom } from 'hooks/use-at-bottom';
 import * as React from 'react';
 

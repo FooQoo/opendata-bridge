@@ -4,16 +4,18 @@ import { faFaceFrown, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button, Card, CardBody } from '@nextui-org/react';
 import { type Message, useChat } from 'ai/react';
-import { ChatList } from 'components/chatbot/chat-list';
-import { ChatPanel, MAX_QUESTION_COUNT } from 'components/chatbot/chat-panel';
-import { ChatScrollAnchor } from 'components/chatbot/chat-scroll-anchor';
-import ConfirmFileModal from 'components/chatbot/confirm-file-modal';
-import { EmptyScreen } from 'components/chatbot/empty-screen';
-import OptionModal from 'components/chatbot/option-modal';
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { ChatList } from 'components/molecules/Chat/chat-list';
+import {
+  ChatPanel,
+  MAX_QUESTION_COUNT,
+} from 'components/molecules/Chat/chat-panel';
+import { ChatScrollAnchor } from 'components/molecules/Chat/chat-scroll-anchor';
+import ConfirmFileModal from 'components/molecules/Chat/confirm-file-modal';
+import { EmptyScreen } from 'components/molecules/Chat/empty-screen';
+import OptionModal from 'components/molecules/Chat/option-modal';
+import { useState } from 'react';
 import { toast } from 'react-hot-toast';
-import { getMessageSearch, UsecaseProps } from 'types/usecase';
+import { UsecaseProps } from 'types/usecase';
 
 export interface ChatProps extends React.ComponentProps<'div'> {
   initialMessages?: Message[];

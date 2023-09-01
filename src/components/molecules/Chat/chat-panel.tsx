@@ -1,9 +1,9 @@
 import { type UseChatHelpers } from 'ai/react';
-import { ButtonScrollToBottom } from 'components/chatbot/button-scroll-to-bottom';
-import { PromptDisableForm } from 'components/chatbot/prompt-disable-form';
-import { PromptForm } from 'components/chatbot/prompt-form';
-import { Button } from 'components/chatbot/ui/button';
-import { IconRefresh, IconStop } from 'components/chatbot/ui/icons';
+import { Button } from 'components/atoms/Chat/button';
+import { IconRefresh, IconStop } from 'components/atoms/Chat/icons';
+import { ButtonScrollToBottom } from 'components/molecules/Chat/button-scroll-to-bottom';
+import { PromptDisableForm } from 'components/molecules/Chat/prompt-disable-form';
+import { PromptForm } from 'components/molecules/Chat/prompt-form';
 import { m } from 'framer-motion';
 
 export interface ChatPanelProps

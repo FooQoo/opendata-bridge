@@ -1,11 +1,7 @@
 import { Button, Card, CardBody, Link, Textarea } from '@nextui-org/react';
 import { UseChatHelpers } from 'ai/react';
-import { MemoizedReactMarkdown } from 'components/chatbot/markdown';
-import { CodeBlock } from 'components/chatbot/ui/codeblock';
 import { useState } from 'react';
-import remarkGfm from 'remark-gfm';
-import remarkMath from 'remark-math';
-import { getMessageSearch, UsecaseProps } from 'types/usecase';
+import { UsecaseProps } from 'types/usecase';
 
 export function EmptyScreen({
   append,

@@ -3,10 +3,10 @@
 
 import { Avatar, Link } from '@nextui-org/react';
 import { Message } from 'ai';
+import { CodeBlock } from 'components/atoms/Chat/codeblock';
+import { IconOpenAI, IconUser } from 'components/atoms/Chat/icons';
 import styles from 'components/chatbot/chat-message.module.scss';
-import { MemoizedReactMarkdown } from 'components/chatbot/markdown';
-import { CodeBlock } from 'components/chatbot/ui/codeblock';
-import { IconOpenAI, IconUser } from 'components/chatbot/ui/icons';
+import { MemoizedReactMarkdown } from 'components/molecules/Chat/markdown';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 

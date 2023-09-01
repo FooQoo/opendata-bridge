@@ -1,6 +1,6 @@
 import { Divider } from '@nextui-org/react';
 import { type Message } from 'ai';
-import { ChatMessage } from 'components/chatbot/chat-message';
+import { ChatMessage } from 'components/molecules/Chat/chat-message';
 
 export interface ChatList {
   messages: Message[];
