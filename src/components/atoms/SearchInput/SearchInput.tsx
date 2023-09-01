@@ -32,7 +32,7 @@ const SearchInput = () => {
           '!cursor-text',
         ],
       }}
-      placeholder="お探しのプロンプトテンプレートを検索しましょう。例: 公園"
+      placeholder="プロンプトを検索しましょう。例:公園"
       startContent={
         <div className="text-black/50 text-slate-400 pointer-events-none flex justify-center items-center w-[24px] h-[36px]">
           <FontAwesomeIcon

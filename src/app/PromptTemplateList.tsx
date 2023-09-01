@@ -24,7 +24,7 @@ const PromptTemplateList = ({ initial }: { initial: UsecaseProps[] }) => {
 
   return (
     <Suspense fallback={<div className="h-screen">Loading...</div>}>
-      <p className="mx-5 py-2 md:text-left text-center">
+      <p className="mx-5 md:mx-28 py-2 md:text-left text-center">
         プロンプトテンプレート
       </p>
       <UsercaseList usecases={usecases} />
