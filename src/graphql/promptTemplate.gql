@@ -29,3 +29,24 @@ query fetchPromptTemplate($id: ID) {
     }
   }
 }
+
+mutation create($input: PromptTemplateCreateInput!) {
+  createPromptTemplate(data: $input) {
+    id
+    title
+    base {
+      title
+      content
+    }
+    option {
+      title
+      content
+    }
+  }
+}
+
+mutation publish($id: ID!) {
+  publishPromptTemplate(where: { id: $id }, to: PUBLISHED) {
+    id
+  }
+}
