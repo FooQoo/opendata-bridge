@@ -1,0 +1,31 @@
+query fetchPromptTemplates($query: String) {
+  promptTemplates(where: { _search: $query }, first: 5) {
+    id
+    title
+    description
+    base {
+      content
+      title
+    }
+    option {
+      content
+      title
+    }
+  }
+}
+
+query fetchPromptTemplate($id: ID) {
+  promptTemplate(where: { id: $id }) {
+    id
+    title
+    description
+    base {
+      content
+      title
+    }
+    option {
+      content
+      title
+    }
+  }
+}

@@ -9,8 +9,8 @@ const Usecase = (usecase: UsecaseProps) => {
 
   return (
     <div className={styles.card} onClick={onOpen}>
-      <h2>{usecase.template_title}</h2>
-      <p>{usecase.template_description}</p>
+      <h2>{usecase.title}</h2>
+      <p>{usecase.description}</p>
       <UsecaseModal
         usecase={usecase}
         isOpen={isOpen}

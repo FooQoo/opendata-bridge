@@ -12,22 +12,22 @@ export function EmptyScreen({
   usecase,
 }: Pick<UseChatHelpers, 'append'> & { usecase: UsecaseProps }) {
   const [searchPrompt, setSearchPrompt] = useState<string>(
-    usecase.search_prompt
+    usecase.base.content
   );
 
   return (
     <div className="mx-auto max-w-4xl px-4">
       <div className="rounded-lg border bg-background p-8">
-        <h1 className="mb-2 text-lg font-semibold">{usecase.template_title}</h1>
+        <h1 className="mb-2 text-lg font-semibold">{usecase.title}</h1>
         <p className="mb-2 leading-normal text-muted-foreground">
-          {usecase.template_description}
+          {usecase.description}
         </p>
         <p className="mb-2 leading-normal text-muted-foreground">
           以下のプロンプトテンプレートを編集してオープンデータを検索してみましょう。
         </p>
         <div className="flex justify-center items-center flex-col space-y-4">
           <Textarea
-            label={`${usecase.template_title}のプロンプト`}
+            label={`${usecase.title}のプロンプト`}
             labelPlacement="inside"
             value={searchPrompt}
             maxRows={30}

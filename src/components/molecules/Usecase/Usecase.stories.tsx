@@ -19,11 +19,18 @@ export const Primary: Story = {
 };
 
 Primary.args = {
-  id: 0,
-  template_title: 'Weather Information',
-  template_description:
+  id: '',
+  title: 'Weather Information',
+  description:
     'This template is used to fetch and display weather information.',
-  search_prompt: 'Enter the city for which you want to know the weather.',
-  data_fetch_prompt: 'Fetch weather data for {city}.',
-  data_format_prompt: 'Display the weather data in a readable format.',
+  base: {
+    title: 'Weather Information',
+    content: '',
+  },
+  option: [
+    {
+      title: 'Weather Information',
+      content: '',
+    },
+  ],
 };

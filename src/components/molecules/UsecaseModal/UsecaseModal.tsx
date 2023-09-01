@@ -27,10 +27,10 @@ const UsecaseModal = ({
         {(onClose) => (
           <>
             <ModalHeader className="flex flex-col gap-1">
-              {usecase.template_title}
+              {usecase.title}
             </ModalHeader>
             <ModalBody>
-              <p>{usecase.template_description}</p>
+              <p>{usecase.description}</p>
             </ModalBody>
             <ModalFooter>
               <Button color="danger" variant="light" onPress={onClose}>
