@@ -8,15 +8,17 @@ const Usecase = (usecase: UsecaseProps) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
-    <div className={styles.card} onClick={onOpen}>
-      <h2>{usecase.title}</h2>
-      <p>{usecase.description}</p>
+    <>
+      <div className={styles.card} onClick={onOpen}>
+        <h2>{usecase.title}</h2>
+        <p>{usecase.description}</p>
+      </div>
       <UsecaseModal
         usecase={usecase}
         isOpen={isOpen}
         onOpenChange={onOpenChange}
       />
-    </div>
+    </>
   );
 };
 
