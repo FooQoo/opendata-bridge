@@ -30,6 +30,7 @@ Primary.args = {
           content: '',
         },
       ],
+      updatedAt: '2021-08-01T00:00:00.000Z',
     },
   ],
 };
