@@ -41,9 +41,24 @@ const SearchInput = () => {
           />
         </div>
       }
-      value={query}
-      onChange={(e) => setQueryState(e.target.value)}
-      onClear={() => setQueryState('')}
+      value={query.query}
+      onChange={(e) =>
+        setQueryState({
+          query: e.target.value,
+          isTyping: true,
+          isInitialRender: false,
+        })
+      }
+      onClear={() =>
+        setQueryState({ query: '', isTyping: false, isInitialRender: false })
+      }
+      onKeyDown={() =>
+        setQueryState({
+          query: query.query,
+          isTyping: false,
+          isInitialRender: false,
+        })
+      }
     />
   );
 };
