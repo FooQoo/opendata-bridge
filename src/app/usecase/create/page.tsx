@@ -5,7 +5,6 @@ import { Prompt, UsecaseProps } from 'types/usecase';
 
 // postUsecaseのHooks post処理を実行するcallback関数, error, loadingを返す
 const usePostUsecase = () => {
-  const [isSuccess, setIsSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const callback = async (usecase: UsecaseProps) => {
@@ -24,21 +23,16 @@ const usePostUsecase = () => {
 
   const postUsecase = async (usecase: UsecaseProps) => {
     setLoading(true);
-    try {
-      const flag = await callback(usecase);
-      setIsSuccess(flag);
-    } catch (e) {
-      console.error(e);
-    } finally {
-      setLoading(false);
-    }
+    const flag = await callback(usecase);
+    setLoading(false);
+    return flag;
   };
 
-  return { isSuccess, loading, postUsecase };
+  return { loading, postUsecase };
 };
 
 const CreateUsecase = () => {
-  const { isSuccess, loading, postUsecase } = usePostUsecase();
+  const { loading, postUsecase } = usePostUsecase();
 
   const [usecase, setUsecase] = useState<UsecaseProps>({
     id: '', // 空文字として送信する
@@ -275,7 +269,7 @@ const CreateUsecase = () => {
           <Button
             className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded`}
             onClick={async () => {
-              await postUsecase(usecase);
+              const isSuccess = await postUsecase(usecase);
               alert(isSuccess ? '作成しました' : '作成に失敗しました');
             }}
           >
