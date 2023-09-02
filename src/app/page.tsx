@@ -19,6 +19,7 @@ const Home = async () => {
           <p>~ 使う人と作る人を繋げたい ~</p>
         </div>
       </div>
+
       <div className={styles.description}>
         <SearchInput />
       </div>

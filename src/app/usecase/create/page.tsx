@@ -65,7 +65,7 @@ const CreateUsecase = () => {
   });
 
   return (
-    <div className="bg-white border rounded-lg px-8 py-6 mx-auto my-8 w-full">
+    <div className="bg-white border md:rounded-lg px-8 py-6 mx-auto my-8 w-full md:w-[80%]">
       <h2 className="text-2xl font-medium mb-4">プロンプトテンプレート作成</h2>
       <form>
         <div className="mb-4">
@@ -243,15 +243,17 @@ const CreateUsecase = () => {
         </div>
       </form>
 
-      <Button
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        onClick={async () => {
-          const isSuccess = await postUsecase(usecase);
-          alert(isSuccess ? '作成しました' : '作成に失敗しました');
-        }}
-      >
-        作成する
-      </Button>
+      <div className="flex justify-center items-center">
+        <Button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          onClick={async () => {
+            const isSuccess = await postUsecase(usecase);
+            alert(isSuccess ? '作成しました' : '作成に失敗しました');
+          }}
+        >
+          作成する
+        </Button>
+      </div>
     </div>
   );
 };

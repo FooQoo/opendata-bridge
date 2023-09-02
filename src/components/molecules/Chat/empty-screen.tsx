@@ -27,6 +27,7 @@ export function EmptyScreen({
             labelPlacement="inside"
             value={searchPrompt}
             maxRows={30}
+            size="lg"
             onChange={(e) => setSearchPrompt(e.target.value)}
           />
           <Button

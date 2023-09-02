@@ -27,9 +27,9 @@ const PromptTemplateList = ({ initial }: { initial: UsecaseProps[] }) => {
 
   return (
     <>
-      <p className="mx-5 md:mx-28 py-2 md:text-left text-center">
+      <h2 className="mx-5 md:mx-28 py-2 md:text-left text-center">
         プロンプトテンプレート
-      </p>
+      </h2>
       {!query.isTyping && (!isLoading || query.isInitialRender) ? (
         <UsercaseList usecases={data} />
       ) : (
