@@ -1,23 +1,45 @@
 'use client';
-import { Button } from '@nextui-org/react';
+import { Button, Spinner } from '@nextui-org/react';
 import { useState } from 'react';
 import { Prompt, UsecaseProps } from 'types/usecase';
 
-const postUsecase = async (usecase: UsecaseProps) => {
-  try {
-    await fetch('/api/usecase', {
-      method: 'POST',
-      body: JSON.stringify(usecase),
-    });
-  } catch (e) {
-    console.error(e);
-    return false;
-  }
+// postUsecaseのHooks post処理を実行するcallback関数, error, loadingを返す
+const usePostUsecase = () => {
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  return true;
+  const callback = async (usecase: UsecaseProps) => {
+    try {
+      await fetch('/api/usecase', {
+        method: 'POST',
+        body: JSON.stringify(usecase),
+      });
+    } catch (e) {
+      console.error(e);
+      return false;
+    }
+
+    return true;
+  };
+
+  const postUsecase = async (usecase: UsecaseProps) => {
+    setLoading(true);
+    try {
+      const flag = await callback(usecase);
+      setIsSuccess(flag);
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return { isSuccess, loading, postUsecase };
 };
 
 const CreateUsecase = () => {
+  const { isSuccess, loading, postUsecase } = usePostUsecase();
+
   const [usecase, setUsecase] = useState<UsecaseProps>({
     id: '', // 空文字として送信する
     title: '特定のエリアの公園を調査する',
@@ -62,6 +84,7 @@ const CreateUsecase = () => {
 - データセットの説明`,
       },
     ] as Prompt[],
+    updatedAt: new Date().toISOString(),
   });
 
   return (
@@ -244,15 +267,21 @@ const CreateUsecase = () => {
       </form>
 
       <div className="flex justify-center items-center">
-        <Button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          onClick={async () => {
-            const isSuccess = await postUsecase(usecase);
-            alert(isSuccess ? '作成しました' : '作成に失敗しました');
-          }}
-        >
-          作成する
-        </Button>
+        {loading ? (
+          <Button className={`bg-gray-400 hover:bg-gray-700 py-2 px-4 rounded`}>
+            <Spinner color="default"></Spinner>
+          </Button>
+        ) : (
+          <Button
+            className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded`}
+            onClick={async () => {
+              await postUsecase(usecase);
+              alert(isSuccess ? '作成しました' : '作成に失敗しました');
+            }}
+          >
+            作成
+          </Button>
+        )}
       </div>
     </div>
   );
