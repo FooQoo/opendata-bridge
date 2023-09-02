@@ -25,13 +25,22 @@ const PromptTemplateList = ({ initial }: { initial: UsecaseProps[] }) => {
     console.error('Error fetching usecases:', error);
   }
 
+  const usecaseResult =
+    data.length === 0 ? (
+      <p className="text-center text-default-500 py-20">
+        プロンプトテンプレートが見つかりませんでした
+      </p>
+    ) : (
+      <UsercaseList usecases={data} />
+    );
+
   return (
     <>
       <h2 className="mx-5 md:mx-28 py-2 md:text-left text-center">
         プロンプトテンプレート
       </h2>
       {!query.isTyping && (!isLoading || query.isInitialRender) ? (
-        <UsercaseList usecases={data} />
+        usecaseResult
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-0  md:gap-4 mx-auto md:mx-[100px] justify-items-center">
           <Card className={styles.card} radius="sm">
