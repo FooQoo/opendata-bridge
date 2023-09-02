@@ -4,6 +4,7 @@ export type UsecaseProps = {
   description: string;
   base: Prompt;
   option: Prompt[];
+  updatedAt: string;
 };
 
 export type Prompt = {

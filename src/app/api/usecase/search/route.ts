@@ -1,5 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
+import { create } from 'domain';
+import { m } from 'framer-motion';
 import { getSdk } from 'lib/generated/client';
 import { gqlClient } from 'lib/gqlClient/gqlCleint';
 import { UsecaseProps } from 'types/usecase';
@@ -11,8 +13,6 @@ export async function GET(req: Request) {
   const query = (searchParams.get('q') as string) || '';
 
   const queryList = query.split(/ |　/).map((query) => query.trim());
-
-  console.info(`query:${queryList.at(0)};`);
 
   const response = await getSdk(gqlClient).fetchPromptTemplates({
     query: queryList.at(0) || '',
@@ -48,6 +48,7 @@ export async function GET(req: Request) {
             title: option.title,
             content: option.content,
           })),
+          updatedAt: promptTemplate.updatedAt.split('T')[0].replace(/-/g, '/'),
         }) as UsecaseProps
     );
 

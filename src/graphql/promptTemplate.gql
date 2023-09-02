@@ -1,5 +1,9 @@
 query fetchPromptTemplates($query: String) {
-  promptTemplates(where: { _search: $query }, first: 5) {
+  promptTemplates(
+    where: { _search: $query }
+    first: 12
+    orderBy: updatedAt_DESC
+  ) {
     id
     title
     description
@@ -11,6 +15,7 @@ query fetchPromptTemplates($query: String) {
       content
       title
     }
+    updatedAt
   }
 }
 
@@ -27,6 +32,7 @@ query fetchPromptTemplate($id: ID) {
       content
       title
     }
+    updatedAt
   }
 }
 
