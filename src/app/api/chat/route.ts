@@ -48,20 +48,6 @@ const functions: ChatCompletionFunctions[] = [
       required: ['page'],
     },
   },
-  {
-    name: 'plan_idea_for_opendata',
-    description: 'Plan idea for OpenData in Tokyo.',
-    parameters: {
-      type: 'object',
-      properties: {
-        idea: {
-          type: 'string',
-          description: 'Idea.',
-        },
-      },
-      required: ['idea'],
-    },
-  },
 ];
 
 export async function POST(req: Request) {

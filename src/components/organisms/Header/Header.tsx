@@ -16,8 +16,14 @@ export const Header = () => {
     <Navbar className={styles.header}>
       <NavbarBrand>
         <Link href="/" color="foreground" as={NextLink}>
-          <Image src="/logo.jpg" alt="logo" width={40} height={40} />
-          <p className="font-bold text-inherit">Opendata Bridge</p>
+          <Image
+            src="/logo.svg"
+            alt="logo"
+            width={40}
+            height={40}
+            className="rounded-sm"
+          />
+          <p className="font-bold text-inherit px-2">Opendata Bridge</p>
         </Link>
       </NavbarBrand>
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
