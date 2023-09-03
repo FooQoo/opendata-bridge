@@ -73,6 +73,7 @@ export async function POST(req: Request) {
     stream: true,
     messages,
     functions,
+    temperature: 0.0,
   });
 
   const stream = OpenAIStream(response, {
@@ -98,6 +99,7 @@ export async function POST(req: Request) {
           stream: true,
           model: 'gpt-3.5-turbo-16k',
           functions,
+          temperature: 0.0,
         });
       } else if (name === 'plan_idea_for_opendata') {
         const planData = {
@@ -109,6 +111,7 @@ export async function POST(req: Request) {
           stream: true,
           model: 'gpt-3.5-turbo-16k',
           functions,
+          temperature: 0.0,
         });
       } else if (name === 'moderation') {
         console.info('moderation', args.response);
