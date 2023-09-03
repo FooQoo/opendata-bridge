@@ -21,5 +21,13 @@ module.exports = {
     },
   },
   // darkMode: 'class',
-  plugins: [nextui()],
+  plugins: [
+    nextui({
+      layout: {
+        background: "url('/opendata-bridge-background.svg')",
+        backgroundSize: 'cover',
+        backgroundAttachment: 'fixed',
+      },
+    }),
+  ],
 };

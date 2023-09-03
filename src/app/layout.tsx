@@ -12,7 +12,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body>
+      <body className="bg-[url('/opendata-bridge-background.svg')] bg-cover bg-fixed">
         <ProjectLayout>{children}</ProjectLayout>
       </body>
     </html>

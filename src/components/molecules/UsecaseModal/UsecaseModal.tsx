@@ -36,24 +36,25 @@ const UsecaseModal = ({
               <p>{usecase.description}</p>
             </ModalBody>
             <ModalFooter>
-              <div className="flex"></div>
-              <div className="flex-grow">
-                <Link href={`/usecase/edit/${usecase.id}`}>
-                  <Button color="danger" variant="light">
-                    <FontAwesomeIcon icon={faEdit} />
+              <div className="flex w-full">
+                <div className="flex-grow">
+                  <Link href={`/usecase/edit/${usecase.id}`}>
+                    <Button color="danger" variant="light">
+                      <FontAwesomeIcon icon={faEdit} />
+                    </Button>
+                  </Link>
+                </div>
+                <div className="flex-none">
+                  <Button color="danger" variant="light" onPress={onClose}>
+                    あとで見る
                   </Button>
-                </Link>
-              </div>
-              <div className="flex-none">
-                <Button color="danger" variant="light" onPress={onClose}>
-                  あとで見る
-                </Button>
-                <Button
-                  color="primary"
-                  onPress={() => router.push(getUsecaseUrl(usecase.id))}
-                >
-                  使ってみる
-                </Button>
+                  <Button
+                    color="primary"
+                    onPress={() => router.push(getUsecaseUrl(usecase.id))}
+                  >
+                    使ってみる
+                  </Button>
+                </div>
               </div>
             </ModalFooter>
           </>

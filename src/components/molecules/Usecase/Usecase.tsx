@@ -11,10 +11,8 @@ const Usecase = (usecase: UsecaseProps) => {
     <>
       <div className={styles.card} onClick={onOpen}>
         <h2>{usecase.title}</h2>
-        <p>{usecase.description}</p>
-        <div className="text-right text-sm mt-5">
-          最終更新日:{usecase.updatedAt}
-        </div>
+        <p className="flex-grow">{usecase.description}</p>
+        <div className="text-right text-sm">最終更新日:{usecase.updatedAt}</div>
       </div>
       <UsecaseModal
         usecase={usecase}
