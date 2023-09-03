@@ -16,11 +16,7 @@ fragment promptTemplate on PromptTemplate {
 }
 
 query fetchPromptTemplates($query: String) {
-  promptTemplates(
-    where: { _search: $query }
-    first: 12
-    orderBy: updatedAt_DESC
-  ) {
+  promptTemplates(where: { _search: $query }, orderBy: updatedAt_DESC) {
     ...promptTemplate
   }
 }
