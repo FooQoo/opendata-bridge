@@ -111,3 +111,35 @@ export async function PUT(
     });
   }
 }
+
+export async function DELETE(
+  req: Request,
+  {
+    params,
+  }: {
+    params: { id: string };
+  }
+) {
+  console.info('DELETE ' + req.url);
+
+  try {
+    const response = await getSdk(gqlClient).delete({
+      id: params.id,
+    });
+
+    if (!response.deletePromptTemplate) {
+      return new Response(JSON.stringify({ status: 404 }), {
+        status: 404,
+      });
+    }
+
+    return new Response(JSON.stringify({ status: 200 }), {
+      status: 200,
+    });
+  } catch (e) {
+    console.error(e);
+    return new Response(JSON.stringify({ status: 500 }), {
+      status: 500,
+    });
+  }
+}

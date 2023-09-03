@@ -2,6 +2,7 @@
 
 import { Button, Spinner } from '@nextui-org/react';
 import UsecaseForm from 'components/organisms/UsecaseForm/UsecaseForm';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { UsecaseProps } from 'types/usecase';
 
@@ -34,6 +35,7 @@ const usePostUsecase = () => {
 };
 
 const UsecaseCreateForm = ({ init }: { init: UsecaseProps }) => {
+  const router = useRouter();
   const { loading, postUsecase } = usePostUsecase();
 
   const [usecase, setUsecase] = useState<UsecaseProps>(init);
@@ -53,6 +55,10 @@ const UsecaseCreateForm = ({ init }: { init: UsecaseProps }) => {
             onClick={async () => {
               const isSuccess = await postUsecase(usecase);
               alert(isSuccess ? '作成しました' : '作成に失敗しました');
+              if (isSuccess) {
+                router.push('/');
+                router.refresh();
+              }
             }}
           >
             作成

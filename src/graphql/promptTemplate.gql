@@ -43,6 +43,12 @@ mutation update($id: ID, $input: PromptTemplateUpdateInput!) {
   }
 }
 
+mutation delete($id: ID) {
+  deletePromptTemplate(where: { id: $id }) {
+    id
+  }
+}
+
 mutation publish($id: ID) {
   publishPromptTemplate(where: { id: $id }, to: PUBLISHED) {
     ...promptTemplate
