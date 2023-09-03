@@ -24,11 +24,13 @@ Primary.args = {
   description:
     'This template is used to fetch and display weather information.',
   base: {
+    id: '',
     title: 'Weather Information',
     content: '',
   },
   option: [
     {
+      id: '',
       title: 'Weather Information',
       content: '',
     },
