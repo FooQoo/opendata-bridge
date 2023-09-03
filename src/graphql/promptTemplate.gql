@@ -1,58 +1,50 @@
+fragment promptTemplate on PromptTemplate {
+  id
+  title
+  description
+  base {
+    id
+    title
+    content
+  }
+  option {
+    id
+    title
+    content
+  }
+  updatedAt
+}
+
 query fetchPromptTemplates($query: String) {
   promptTemplates(
     where: { _search: $query }
     first: 12
     orderBy: updatedAt_DESC
   ) {
-    id
-    title
-    description
-    base {
-      content
-      title
-    }
-    option {
-      content
-      title
-    }
-    updatedAt
+    ...promptTemplate
   }
 }
 
 query fetchPromptTemplate($id: ID) {
   promptTemplate(where: { id: $id }) {
-    id
-    title
-    description
-    base {
-      content
-      title
-    }
-    option {
-      content
-      title
-    }
-    updatedAt
+    ...promptTemplate
   }
 }
 
 mutation create($input: PromptTemplateCreateInput!) {
   createPromptTemplate(data: $input) {
-    id
-    title
-    base {
-      title
-      content
-    }
-    option {
-      title
-      content
-    }
+    ...promptTemplate
   }
 }
 
-mutation publish($id: ID!) {
+mutation update($id: ID, $input: PromptTemplateUpdateInput!) {
+  updatePromptTemplate(data: $input, where: { id: $id }) {
+    ...promptTemplate
+  }
+}
+
+mutation publish($id: ID) {
   publishPromptTemplate(where: { id: $id }, to: PUBLISHED) {
-    id
+    ...promptTemplate
   }
 }

@@ -41,10 +41,12 @@ export async function GET(req: Request) {
           title: promptTemplate.title,
           description: promptTemplate.description,
           base: {
+            id: promptTemplate.base.id,
             title: promptTemplate.base.title,
             content: promptTemplate.base.content,
           },
           option: promptTemplate.option.map((option) => ({
+            id: option.id,
             title: option.title,
             content: option.content,
           })),

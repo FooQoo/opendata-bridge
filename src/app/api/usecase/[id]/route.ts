@@ -30,10 +30,12 @@ export async function GET(
       title: response.promptTemplate.title,
       description: response.promptTemplate.description,
       base: {
+        id: response.promptTemplate.base.id,
         title: response.promptTemplate.base.title,
         content: response.promptTemplate.base.content,
       },
       option: response.promptTemplate.option.map((option) => ({
+        id: option.id,
         title: option.title,
         content: option.content,
       })),
@@ -42,4 +44,70 @@ export async function GET(
       status: 200,
     }
   );
+}
+
+export async function PUT(
+  req: Request,
+  {
+    params,
+  }: {
+    params: { id: string };
+  }
+) {
+  console.info('PUT ' + req.url);
+
+  const usecase: UsecaseProps = await req.json();
+
+  try {
+    const response = await getSdk(gqlClient).update({
+      id: params.id,
+      input: {
+        title: usecase.title,
+        description: usecase.description,
+        base: {
+          update: {
+            data: {
+              title: usecase.base.title,
+              content: usecase.base.content,
+            },
+            where: {
+              id: usecase.base.id,
+            },
+          },
+        },
+        option: {
+          update: usecase.option.map((option) => ({
+            data: {
+              title: option.title,
+              content: option.content,
+            },
+            where: {
+              id: option.id,
+            },
+          })),
+        },
+      },
+    });
+
+    if (!response.updatePromptTemplate) {
+      return new Response(JSON.stringify({ status: 404 }), {
+        status: 404,
+      });
+    }
+
+    if (response.updatePromptTemplate.id) {
+      await getSdk(gqlClient).publish({
+        id: response.updatePromptTemplate.id,
+      });
+    }
+
+    return new Response(JSON.stringify({ status: 200 }), {
+      status: 200,
+    });
+  } catch (e) {
+    console.error(e);
+    return new Response(JSON.stringify({ status: 500 }), {
+      status: 500,
+    });
+  }
 }
