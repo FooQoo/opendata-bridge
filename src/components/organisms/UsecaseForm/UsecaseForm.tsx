@@ -1,5 +1,4 @@
 'use client';
-import { useState } from 'react';
 import { UsecaseProps } from 'types/usecase';
 
 const UsecaseForm = ({
@@ -9,6 +8,8 @@ const UsecaseForm = ({
   usecase: UsecaseProps;
   setUsecase: (usecase: UsecaseProps) => void;
 }) => {
+  console.info(usecase);
+
   return (
     <form>
       <div className="mb-4">
@@ -87,7 +88,11 @@ const UsecaseForm = ({
           onChange={(e) =>
             setUsecase({
               ...usecase,
-              option: [{ ...usecase.option[0], title: e.target.value }],
+              option: [
+                { ...usecase.option[0], title: e.target.value },
+                { ...usecase.option[1] },
+                { ...usecase.option[2] },
+              ],
             })
           }
           placeholder="類義語で検索する"
@@ -105,7 +110,11 @@ const UsecaseForm = ({
           onChange={(e) =>
             setUsecase({
               ...usecase,
-              option: [{ ...usecase.option[0], content: e.target.value }],
+              option: [
+                { ...usecase.option[0], content: e.target.value },
+                { ...usecase.option[1] },
+                { ...usecase.option[2] },
+              ],
             })
           }
           placeholder="Aを代替する検索ワードを3つ考え、それぞれについて検索を行ってください。 ..."
@@ -124,7 +133,11 @@ const UsecaseForm = ({
           onChange={(e) =>
             setUsecase({
               ...usecase,
-              option: [{ ...usecase.option[1], title: e.target.value }],
+              option: [
+                { ...usecase.option[0] },
+                { ...usecase.option[1], title: e.target.value },
+                { ...usecase.option[2] },
+              ],
             })
           }
           placeholder="詳細を確認する"
@@ -142,7 +155,11 @@ const UsecaseForm = ({
           onChange={(e) =>
             setUsecase({
               ...usecase,
-              option: [{ ...usecase.option[1], content: e.target.value }],
+              option: [
+                { ...usecase.option[0] },
+                { ...usecase.option[1], content: e.target.value },
+                { ...usecase.option[2] },
+              ],
             })
           }
           placeholder="これまで検索したデータセットを以下のフォーマットで出力してください。"
@@ -161,7 +178,11 @@ const UsecaseForm = ({
           onChange={(e) =>
             setUsecase({
               ...usecase,
-              option: [{ ...usecase.option[2], title: e.target.value }],
+              option: [
+                { ...usecase.option[0] },
+                { ...usecase.option[1] },
+                { ...usecase.option[2], title: e.target.value },
+              ],
             })
           }
           placeholder="もっと探す"
@@ -179,7 +200,11 @@ const UsecaseForm = ({
           onChange={(e) =>
             setUsecase({
               ...usecase,
-              option: [{ ...usecase.option[2], content: e.target.value }],
+              option: [
+                { ...usecase.option[0] },
+                { ...usecase.option[1] },
+                { ...usecase.option[2], content: e.target.value },
+              ],
             })
           }
         />
