@@ -7,6 +7,28 @@ export type SearchCondition = {
   language: 'JAPANESE';
 };
 
+export type SearchResponse = {
+  searchResultInfo: {
+    totalOfHits: number;
+  };
+  dataset: {
+    title: string;
+    license: string | null;
+    files: {
+      title: string;
+      format: string;
+      url: string;
+    }[];
+  }[];
+  searchCondition: {
+    keyword: string;
+    organization: string | null;
+    category: string | null;
+    format: string | null;
+  };
+  showMoreUrl: string;
+};
+
 const baseUrl = process.env.SEARCH_OPENDATA_URL;
 
 export const searchOpenData = async (searchOpenData: SearchCondition) => {
@@ -39,5 +61,30 @@ export const searchOpenData = async (searchOpenData: SearchCondition) => {
 
   const data = await reponse.json();
 
-  return data;
+  return {
+    searchResultInfo: {
+      totalOfHits: data.searchResultInfo.totalOfHits,
+    },
+    dataset: data.dataset.map((dataset: any) => {
+      return {
+        title: dataset.title,
+        datasetUrl: dataset.datasetUrl,
+        license: dataset.license,
+        files: dataset.files.map((file: any) => {
+          return {
+            title: file.title,
+            format: file.format,
+            url: file.url,
+          };
+        }),
+      };
+    }),
+    searchCondition: {
+      keyword: data.searchCondition.keyword,
+      organization: data.searchCondition.organization,
+      category: data.searchCondition.category,
+      format: data.searchCondition.format,
+    },
+    showMoreUrl: data.showMoreUrl,
+  };
 };

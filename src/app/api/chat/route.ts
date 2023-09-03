@@ -52,10 +52,9 @@ const functions: ChatCompletionFunctions[] = [
 
 export async function POST(req: Request) {
   const { messages } = await req.json();
-  // const recentMessages = messages.slice(-4);
 
   const response = await openai.createChatCompletion({
-    model: 'gpt-3.5-turbo-16k',
+    model: 'gpt-3.5-turbo',
     stream: true,
     messages,
     functions,
@@ -83,24 +82,10 @@ export async function POST(req: Request) {
         return openai.createChatCompletion({
           messages: [...messages, ...newMessages],
           stream: true,
-          model: 'gpt-3.5-turbo-16k',
+          model: 'gpt-4',
           functions,
           temperature: 0.0,
         });
-      } else if (name === 'plan_idea_for_opendata') {
-        const planData = {
-          idea: args.idea as string,
-        };
-        const newMessages = createFunctionCallMessages(planData);
-        return openai.createChatCompletion({
-          messages: [...messages, ...newMessages],
-          stream: true,
-          model: 'gpt-3.5-turbo-16k',
-          functions,
-          temperature: 0.0,
-        });
-      } else if (name === 'moderation') {
-        console.info('moderation', args.response);
       }
     },
   });
