@@ -19,20 +19,17 @@ export function ChatMessage({ message }: ChatMessageProps) {
     <div className={styles.main}>
       <div
         className={
-          'flex h-8 w-8 shrink-0 select-none items-center justify-center rounded-md border shadow ' +
-            message.role ===
-          'user'
-            ? 'bg-background'
-            : 'bg-primary text-primary-foreground'
+          'flex h-10 w-10 shrink-0 select-none items-center justify-center rounded-md border shadow bg-white'
         }
       >
         {message.role === 'user' ? (
-          <Avatar isBordered radius="sm" icon={<IconUser />} />
+          <Avatar className="z-0" isBordered radius="sm" icon={<IconUser />} />
         ) : (
           <Avatar
             isBordered
             radius="sm"
             color="primary"
+            className="z-0"
             icon={<IconOpenAI />}
           />
         )}

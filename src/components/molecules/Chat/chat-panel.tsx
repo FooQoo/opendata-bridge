@@ -37,7 +37,7 @@ export function ChatPanel({
   ).length;
 
   return (
-    <div className="fixed inset-x-0 bottom-0 bg-gradient-to-b from-muted/10 from-10% to-muted/30 to-50%">
+    <div className="fixed inset-x-0 bottom-0  from-muted/10 from-10% to-muted/30 to-50%">
       <ButtonScrollToBottom />
       <div className="mx-auto sm:max-w-4xl sm:px-4">
         {systemMessageCount < MAX_QUESTION_COUNT && (
@@ -46,7 +46,7 @@ export function ChatPanel({
               <Button
                 variant="outline"
                 onClick={() => stop()}
-                className="bg-background"
+                className="bg-white"
               >
                 <IconStop className="mr-2" />
                 回答を中断する
@@ -56,7 +56,7 @@ export function ChatPanel({
                 <Button
                   variant="outline"
                   onClick={() => reload()}
-                  className="bg-background"
+                  className="bg-white"
                 >
                   <IconRefresh className="mr-2" />
                   もう一度やり直す
@@ -67,7 +67,7 @@ export function ChatPanel({
         )}
 
         <div className="flex justify-center">
-          <div className="mt-2 md:mb-10 max-w-2xl w-full border bg-background px-4 py-2 shadow-lg sm:rounded-xl sm:border md:py-4">
+          <div className="mt-2 md:mb-10 max-w-2xl w-full border bg-white px-4 py-2 shadow-lg sm:rounded-xl sm:border md:py-4">
             {systemMessageCount < MAX_QUESTION_COUNT ? (
               <PromptForm
                 onSubmit={async (value) => {
