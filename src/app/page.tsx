@@ -16,7 +16,9 @@ const Home = async () => {
         <div className={styles.background}></div>
         <div className={styles.text}>
           <h1>Opendata Bridge</h1>
-          <p>~ 使う人と作る人を繋げたい ~</p>
+          <p className="py-3">
+            日本全国に対応した「AI」搭載のオープンデータ検索サービス
+          </p>
         </div>
       </div>
 
