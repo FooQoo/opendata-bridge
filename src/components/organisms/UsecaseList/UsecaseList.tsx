@@ -9,7 +9,7 @@ export type UsercaseListProps = {
 
 const UsercaseList = ({ usecases }: UsercaseListProps) => {
   return (
-    <div className="grid grid-cols-1 2xl:grid-cols-2 gap-0 md:gap-4 mx-auto md:mx-[100px] justify-items-center">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-4 mx-auto justify-items-center">
       {usecases.map((usecase, index) => (
         <Usecase key={index} {...usecase} />
       ))}

@@ -5,7 +5,7 @@ const config: CodegenConfig = {
   schema: process.env.PROMPT_TEMPLATE_ENDPOINT || '',
   documents: 'src/**/*.gql',
   generates: {
-    'src/lib/generated/client.ts': {
+    './src/lib/generated/client.ts': {
       plugins: [
         'typescript',
         'typescript-operations',

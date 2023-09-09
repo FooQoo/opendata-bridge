@@ -36,13 +36,13 @@ const PromptTemplateList = ({ initial }: { initial: UsecaseProps[] }) => {
 
   return (
     <>
-      <h2 className="mx-5 md:mx-36 py-6 md:text-left text-center text-2xl">
+      <h2 className="mx-5 py-6 md:text-left text-center text-2xl">
         プロンプトテンプレート
       </h2>
       {!query.isTyping && (!isLoading || query.isInitialRender) ? (
         usecaseResult
       ) : (
-        <div className="grid grid-cols-1 2xl:grid-cols-2 gap-0  md:gap-4 mx-auto md:mx-[100px] justify-items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 md:gap-4 mx-auto justify-items-center">
           {[...Array(4)].map((_, index) => (
             <Card key={index} className={styles.card} radius="sm">
               <div className="space-y-3">
