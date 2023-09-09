@@ -36,7 +36,9 @@ const PromptTemplateList = ({ initial }: { initial: UsecaseProps[] }) => {
 
   return (
     <>
-      <h2 className="mx-5 py-6 text-center text-2xl">プロンプトテンプレート</h2>
+      <h2 className="mx-5 pb-20 text-center text-2xl">
+        プロンプトテンプレート一覧
+      </h2>
       {!query.isTyping && (!isLoading || query.isInitialRender) ? (
         usecaseResult
       ) : (
