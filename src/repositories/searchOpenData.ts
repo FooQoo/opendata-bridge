@@ -1,8 +1,6 @@
 export type SearchCondition = {
   page: number;
   keyword: string | undefined;
-  organization: string | undefined;
-  category: string | undefined;
   format: string | undefined;
   language: 'JAPANESE';
 };
@@ -13,17 +11,17 @@ export type SearchResponse = {
   };
   dataset: {
     title: string;
+    siteName: string;
     license: string | null;
     files: {
       title: string;
       format: string;
       url: string;
     }[];
+    tags: string[];
   }[];
   searchCondition: {
     keyword: string;
-    organization: string | null;
-    category: string | null;
     format: string | null;
   };
   showMoreUrl: string;
@@ -36,12 +34,6 @@ export const searchOpenData = async (searchOpenData: SearchCondition) => {
 
   if (searchOpenData.keyword) {
     params['keyword'] = searchOpenData.keyword;
-  }
-  if (searchOpenData.organization) {
-    params['organization'] = searchOpenData.organization;
-  }
-  if (searchOpenData.category) {
-    params['category'] = searchOpenData.category;
   }
   if (searchOpenData.format) {
     params['format'] = searchOpenData.format;
@@ -68,6 +60,7 @@ export const searchOpenData = async (searchOpenData: SearchCondition) => {
     dataset: data.dataset.map((dataset: any) => {
       return {
         title: dataset.title,
+        siteName: dataset.siteName,
         datasetUrl: dataset.datasetUrl,
         license: dataset.license,
         files: dataset.files.map((file: any) => {
@@ -77,12 +70,11 @@ export const searchOpenData = async (searchOpenData: SearchCondition) => {
             url: file.url,
           };
         }),
+        tags: dataset.tags,
       };
     }),
     searchCondition: {
       keyword: data.searchCondition.keyword,
-      organization: data.searchCondition.organization,
-      category: data.searchCondition.category,
       format: data.searchCondition.format,
     },
     showMoreUrl: data.showMoreUrl,

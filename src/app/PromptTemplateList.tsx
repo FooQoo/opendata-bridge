@@ -4,7 +4,6 @@ import UsercaseList from 'components/organisms/UsecaseList/UsecaseList';
 import usecaseSearchFeatcher, {
   fetchUsecasePath,
 } from 'lib/axios/usecaseSearchFetcher';
-import { Suspense, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { queryState } from 'recoil/queryState';
 import useSWR from 'swr';
