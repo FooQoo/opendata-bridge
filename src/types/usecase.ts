@@ -4,6 +4,7 @@ export type UsecaseProps = {
   description: string;
   base: Prompt;
   option: Prompt[];
+  goodCount: number;
   updatedAt: string;
 };
 

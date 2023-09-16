@@ -2,6 +2,7 @@
 
 import { getSdk } from 'lib/generated/client';
 import { gqlClient } from 'lib/gqlClient/gqlCleint';
+import { countGood } from 'lib/postgres/feedback';
 import { UsecaseProps } from 'types/usecase';
 
 export async function GET(
@@ -24,6 +25,8 @@ export async function GET(
     });
   }
 
+  const goodCount = await countGood(response.promptTemplate.id);
+
   return new Response(
     JSON.stringify({
       id: response.promptTemplate.id,
@@ -39,6 +42,7 @@ export async function GET(
         title: option.title,
         content: option.content,
       })),
+      goodCount,
     } as UsecaseProps),
     {
       status: 200,

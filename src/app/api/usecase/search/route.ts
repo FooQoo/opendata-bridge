@@ -1,9 +1,8 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
-import { create } from 'domain';
-import { m } from 'framer-motion';
 import { getSdk } from 'lib/generated/client';
 import { gqlClient } from 'lib/gqlClient/gqlCleint';
+import { countGood } from 'lib/postgres/feedback';
 import { UsecaseProps } from 'types/usecase';
 
 export async function GET(req: Request) {
@@ -18,41 +17,42 @@ export async function GET(req: Request) {
     query: queryList.at(0) || '',
   });
 
-  const json = response.promptTemplates
-    .filter((promptTemplate) => {
-      return queryList.slice(1).every((query) => {
-        return (
-          promptTemplate.title.includes(query) ||
-          promptTemplate.description.includes(query) ||
-          promptTemplate.base.title.includes(query) ||
-          promptTemplate.base.content.includes(query) ||
-          promptTemplate.option.some((option) => {
-            return (
-              option.title.includes(query) || option.content.includes(query)
-            );
-          })
-        );
-      });
+  const filteredResponse = response.promptTemplates.filter((promptTemplate) => {
+    return queryList.slice(1).every((query) => {
+      return (
+        promptTemplate.title.includes(query) ||
+        promptTemplate.description.includes(query) ||
+        promptTemplate.base.title.includes(query) ||
+        promptTemplate.base.content.includes(query) ||
+        promptTemplate.option.some((option) => {
+          return option.title.includes(query) || option.content.includes(query);
+        })
+      );
+    });
+  });
+
+  const json = await Promise.all(
+    filteredResponse.map(async (promptTemplate) => {
+      const goodCount = await countGood(promptTemplate.id);
+      return {
+        id: promptTemplate.id,
+        title: promptTemplate.title,
+        description: promptTemplate.description,
+        base: {
+          id: promptTemplate.base.id,
+          title: promptTemplate.base.title,
+          content: promptTemplate.base.content,
+        },
+        option: promptTemplate.option.map((option) => ({
+          id: option.id,
+          title: option.title,
+          content: option.content,
+        })),
+        updatedAt: promptTemplate.updatedAt.split('T')[0].replace(/-/g, '/'),
+        goodCount,
+      } as UsecaseProps;
     })
-    .map(
-      (promptTemplate) =>
-        ({
-          id: promptTemplate.id,
-          title: promptTemplate.title,
-          description: promptTemplate.description,
-          base: {
-            id: promptTemplate.base.id,
-            title: promptTemplate.base.title,
-            content: promptTemplate.base.content,
-          },
-          option: promptTemplate.option.map((option) => ({
-            id: option.id,
-            title: option.title,
-            content: option.content,
-          })),
-          updatedAt: promptTemplate.updatedAt.split('T')[0].replace(/-/g, '/'),
-        }) as UsecaseProps
-    );
+  );
 
   return new Response(JSON.stringify(json), {
     status: 200,
