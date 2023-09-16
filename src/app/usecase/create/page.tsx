@@ -50,6 +50,7 @@ const init = {
     },
   ] as Prompt[],
   updatedAt: new Date().toISOString(),
+  goodCount: 0,
 };
 
 const CreateUsecase = () => {
