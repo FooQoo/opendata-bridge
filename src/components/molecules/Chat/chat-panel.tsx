@@ -18,6 +18,7 @@ export interface ChatPanelProps
     | 'setInput'
   > {
   id?: string;
+  isLimit: boolean;
 }
 
 export const MAX_QUESTION_COUNT = 4;
@@ -31,6 +32,7 @@ export function ChatPanel({
   input,
   setInput,
   messages,
+  isLimit,
 }: ChatPanelProps) {
   const systemMessageCount = messages.filter(
     (message) => message.role === 'user'
@@ -68,7 +70,7 @@ export function ChatPanel({
 
         <div className="flex justify-center">
           <div className="mt-2 md:mb-10 max-w-2xl w-full border bg-white px-4 py-2 shadow-lg sm:rounded-xl sm:border md:py-4">
-            {systemMessageCount < MAX_QUESTION_COUNT ? (
+            {!isLimit ? (
               <PromptForm
                 onSubmit={async (value) => {
                   await append({
@@ -90,7 +92,9 @@ export function ChatPanel({
               }
             >
               残りの質問回数:{' '}
-              {Math.max(MAX_QUESTION_COUNT - systemMessageCount, 0)}
+              {isLimit
+                ? 0
+                : Math.max(MAX_QUESTION_COUNT - systemMessageCount, 0)}
             </p>
           </div>
         </div>
