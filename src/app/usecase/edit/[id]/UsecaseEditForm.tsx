@@ -87,6 +87,7 @@ const UsecaseCreateForm = ({ init }: { init: UsecaseProps }) => {
               onClick={async () => {
                 const isSuccess = await updateUsecase(usecase);
                 alert(isSuccess ? '更新しました' : '更新に失敗しました');
+                router.push('/');
                 router.refresh();
               }}
             >
