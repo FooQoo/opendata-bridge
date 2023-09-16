@@ -1,8 +1,10 @@
 import ProjectLayout from 'components/projects/ProjectLayout/ProjectLayout';
 
 export const metadata = {
-  title: 'OpenData Bridge',
-  description: '市民とオープンデータをつなぐプラットフォーム',
+  title:
+    'OpenData Bridge -日本全国に対応した「AI」搭載のオープンデータ検索サービス-',
+  description:
+    '市民とオープンデータをつなぐことを目的とした日本全国に対応した「AI」搭載のオープンデータ検索サービス',
 };
 
 export default function RootLayout({
