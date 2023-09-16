@@ -14,7 +14,7 @@ const Usecase = (usecase: UsecaseProps) => {
       <div className={styles.card} onClick={onOpen}>
         <h2>{usecase.title}</h2>
         <p className="flex-grow">{usecase.description}</p>
-        <div className="text-sm grid grid-cols-2 h-{20px}">
+        <div className="text-sm grid grid-cols-2 h-[20px]">
           <span>
             <FontAwesomeIcon icon={faThumbsUp} />: {usecase.goodCount}
           </span>
