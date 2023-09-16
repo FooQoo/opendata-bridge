@@ -50,7 +50,10 @@ const UsecaseModal = ({
                   </Button>
                   <Button
                     color="primary"
-                    onPress={() => router.push(getUsecaseUrl(usecase.id))}
+                    onPress={() => {
+                      router.push(getUsecaseUrl(usecase.id));
+                      router.refresh();
+                    }}
                   >
                     使ってみる
                   </Button>
