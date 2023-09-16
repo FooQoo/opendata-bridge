@@ -2,7 +2,7 @@
 
 import { faFaceFrown, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Button, Card, CardBody } from '@nextui-org/react';
+import { Button } from '@nextui-org/react';
 import { type Message, useChat } from 'ai/react';
 import { ChatList } from 'components/molecules/Chat/chat-list';
 import {
@@ -15,12 +15,27 @@ import { EmptyScreen } from 'components/molecules/Chat/empty-screen';
 import OptionModal from 'components/molecules/Chat/option-modal';
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
+import { Feedback } from 'types/feedback';
 import { UsecaseProps } from 'types/usecase';
+
+const postFeedback = async (feedback: Feedback) => {
+  try {
+    await fetch('/api/feedback', {
+      method: 'POST',
+      body: JSON.stringify(feedback),
+    });
+  } catch (e) {
+    console.error(e);
+    return false;
+  }
+
+  return true;
+};
 
 export interface ChatProps extends React.ComponentProps<'div'> {
   initialMessages?: Message[];
   usecase: UsecaseProps;
-  id?: string;
+  id: string;
 }
 
 export function Chat({ id, initialMessages, usecase }: ChatProps) {
@@ -87,14 +102,28 @@ export function Chat({ id, initialMessages, usecase }: ChatProps) {
                     <Button
                       className="mx-5"
                       endContent={<FontAwesomeIcon icon={faThumbsUp} />}
-                      onPress={() => setIsFeedbacked(true)}
+                      onPress={async () => {
+                        await postFeedback({
+                          usercaseId: id,
+                          isGood: true,
+                          isBad: false,
+                        });
+                        setIsFeedbacked(true);
+                      }}
                     >
                       気に入った
                     </Button>
                     <Button
                       className="mx-5"
                       endContent={<FontAwesomeIcon icon={faFaceFrown} />}
-                      onPress={() => setIsFeedbacked(true)}
+                      onPress={async () => {
+                        await postFeedback({
+                          usercaseId: id,
+                          isGood: false,
+                          isBad: true,
+                        });
+                        setIsFeedbacked(true);
+                      }}
                     >
                       いまいちだ
                     </Button>

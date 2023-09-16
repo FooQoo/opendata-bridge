@@ -1,3 +1,5 @@
+import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useDisclosure } from '@nextui-org/react';
 import UsecaseModal from 'components/molecules/UsecaseModal/UsecaseModal';
 import { UsecaseProps } from 'types/usecase';
@@ -12,7 +14,12 @@ const Usecase = (usecase: UsecaseProps) => {
       <div className={styles.card} onClick={onOpen}>
         <h2>{usecase.title}</h2>
         <p className="flex-grow">{usecase.description}</p>
-        <div className="text-right text-sm">最終更新日:{usecase.updatedAt}</div>
+        <div className="text-sm grid grid-cols-2">
+          <span>
+            <FontAwesomeIcon icon={faThumbsUp} />: {usecase.goodCount}
+          </span>
+          <span className="text-right">最終更新日:{usecase.updatedAt}</span>
+        </div>
       </div>
       <UsecaseModal
         usecase={usecase}
