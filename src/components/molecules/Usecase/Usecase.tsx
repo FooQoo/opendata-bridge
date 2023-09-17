@@ -16,7 +16,7 @@ const Usecase = (usecase: UsecaseProps) => {
         <p className="flex-grow">{usecase.description}</p>
         <div className="text-sm grid grid-cols-2 h-[20px]">
           <span>
-            <FontAwesomeIcon className="h-[15px] w-[20px]" icon={faThumbsUp} />:{' '}
+            <FontAwesomeIcon className="h-[15px] w-[20px]" icon={faThumbsUp} />{' '}
             {usecase.goodCount}
           </span>
           <span className="text-right">最終更新日:{usecase.updatedAt}</span>

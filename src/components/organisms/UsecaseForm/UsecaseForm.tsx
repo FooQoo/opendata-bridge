@@ -8,8 +8,6 @@ const UsecaseForm = ({
   usecase: UsecaseProps;
   setUsecase: (usecase: UsecaseProps) => void;
 }) => {
-  console.info(usecase);
-
   return (
     <form>
       <div className="mb-4">

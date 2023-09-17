@@ -1,4 +1,8 @@
+import '@fortawesome/fontawesome-svg-core/styles.css';
+
+import { config } from '@fortawesome/fontawesome-svg-core';
 import ProjectLayout from 'components/projects/ProjectLayout/ProjectLayout';
+config.autoAddCss = false;
 
 export const metadata = {
   title:
