@@ -27,13 +27,16 @@ export function EmptyScreen({
           <div className="relative w-full my-10">
             <Textarea
               label={`${usecase.title}のプロンプト`}
-              labelPlacement="outside"
+              labelPlacement="inside"
               value={searchPrompt}
               maxRows={30}
               size="lg"
               onChange={(e) => setSearchPrompt(e.target.value)}
+              classNames={{
+                label: 'mr-10',
+              }}
             />
-            <div className="absolute top-8 right-4">
+            <div className="absolute top-4 right-4">
               <CopyButton value={searchPrompt} />
             </div>
           </div>
