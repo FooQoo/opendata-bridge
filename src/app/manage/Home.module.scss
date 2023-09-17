@@ -1,0 +1,58 @@
+@import 'app/_mixin';
+
+.description {
+  text-align: center;
+  margin: 6rem 0;
+  line-height: 1.5;
+  font-size: 1.5rem;
+  @apply flex justify-center;
+}
+
+.code {
+  background: #fafafa;
+  border-radius: 5px;
+  padding: 0.75rem;
+  font-size: 1.1rem;
+  font-family:
+    Menlo,
+    Monaco,
+    Lucida Console,
+    Liberation Mono,
+    DejaVu Sans Mono,
+    Bitstream Vera Sans Mono,
+    Courier New,
+    monospace;
+}
+
+.hero {
+  width: 100%;
+  height: 200px;
+
+  .text {
+    height: 100%;
+
+    @apply flex flex-col justify-center items-start;
+
+    h1 {
+      text-align: center;
+      width: 100%;
+      @apply text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl;
+    }
+
+    p {
+      text-align: center;
+      width: 100%;
+      @apply text-xl tracking-tight text-gray-900;
+    }
+  }
+
+  .background {
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(to bottom, #4f8ef7, #5bcaff);
+    background-size: cover;
+    position: absolute;
+    left: 0;
+    z-index: -1;
+  }
+}

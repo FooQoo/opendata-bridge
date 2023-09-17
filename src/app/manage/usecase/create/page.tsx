@@ -1,4 +1,4 @@
-import UsecaseCreateForm from 'app/usecase/create/UsecaseCreateForm';
+import UsecaseCreateForm from 'app/manage/usecase/create/UsecaseCreateForm';
 import { Prompt } from 'types/usecase';
 
 const init = {

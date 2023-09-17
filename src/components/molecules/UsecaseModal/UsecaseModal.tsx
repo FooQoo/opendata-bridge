@@ -38,7 +38,7 @@ const UsecaseModal = ({
             <ModalFooter>
               <div className="flex w-full">
                 <div className="flex-grow">
-                  <Link href={`/usecase/edit/${usecase.id}`}>
+                  <Link href={`/manage/usecase/edit/${usecase.id}`}>
                     <Button color="danger" variant="light">
                       <FontAwesomeIcon icon={faEdit} />
                     </Button>

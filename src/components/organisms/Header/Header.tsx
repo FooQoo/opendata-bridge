@@ -53,7 +53,7 @@ export const Header = () => {
           </Button>
         </NavbarItem> */}
         <NavbarItem>
-          <Link href="/usecase/create">テンプレートを作る</Link>
+          <Link href="/manage/">管理ページ</Link>
         </NavbarItem>
       </NavbarContent>
     </Navbar>

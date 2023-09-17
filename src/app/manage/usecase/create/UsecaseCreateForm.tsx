@@ -56,7 +56,7 @@ const UsecaseCreateForm = ({ init }: { init: UsecaseProps }) => {
               const isSuccess = await postUsecase(usecase);
               alert(isSuccess ? '作成しました' : '作成に失敗しました');
               if (isSuccess) {
-                router.push('/');
+                router.push('/manage/');
                 router.refresh();
               }
             }}

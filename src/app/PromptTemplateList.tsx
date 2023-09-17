@@ -1,6 +1,18 @@
 'use client';
-import { Card, Skeleton } from '@nextui-org/react';
-import UsercaseList from 'components/organisms/UsecaseList/UsecaseList';
+import { faEdit, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  Button,
+  Card,
+  Link,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  Skeleton,
+  useDisclosure,
+} from '@nextui-org/react';
 import usecaseSearchFeatcher, {
   fetchUsecasePath,
 } from 'lib/axios/usecaseSearchFetcher';
@@ -10,6 +22,69 @@ import useSWR from 'swr';
 import { UsecaseProps } from 'types/usecase';
 
 import styles from './PromptTemplateList.module.scss';
+
+const UsecaseModal = ({
+  usecase,
+  isOpen,
+  onOpenChange,
+}: {
+  usecase: UsecaseProps;
+  isOpen: boolean;
+  onOpenChange: () => void;
+}) => {
+  return (
+    <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="center">
+      <ModalContent>
+        {(onClose) => (
+          <>
+            <ModalHeader className="flex flex-col gap-1">
+              {usecase.title}
+            </ModalHeader>
+            <ModalBody>
+              <p>{usecase.description}</p>
+              <p>WIP: ダウンロード可能なファイル一覧のリンクを記載する</p>
+            </ModalBody>
+            <ModalFooter>
+              <div className="flex w-full">
+                <div className="flex-grow"></div>
+                <div className="flex-none">
+                  <Button color="danger" variant="light" onPress={onClose}>
+                    あとで見る
+                  </Button>
+                </div>
+              </div>
+            </ModalFooter>
+          </>
+        )}
+      </ModalContent>
+    </Modal>
+  );
+};
+
+const Usecase = (usecase: UsecaseProps) => {
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
+  return (
+    <>
+      <div className={styles.card} onClick={onOpen}>
+        <h2>{usecase.title}</h2>
+        <p className="flex-grow">{usecase.description}</p>
+        <div className="text-sm grid grid-cols-2 h-[20px]">
+          <span>
+            <FontAwesomeIcon className="h-[15px] w-[20px]" icon={faThumbsUp} />{' '}
+            {usecase.goodCount}
+          </span>
+          <span className="text-right">最終更新日:{usecase.updatedAt}</span>
+        </div>
+      </div>
+      <UsecaseModal
+        usecase={usecase}
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+      />
+    </>
+  );
+};
 
 const PromptTemplateList = ({ initial }: { initial: UsecaseProps[] }) => {
   const query = useRecoilValue(queryState);
@@ -30,7 +105,11 @@ const PromptTemplateList = ({ initial }: { initial: UsecaseProps[] }) => {
         プロンプトテンプレートが見つかりませんでした
       </p>
     ) : (
-      <UsercaseList usecases={data} />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-4 mx-auto justify-items-center">
+        {data.map((usecase, index) => (
+          <Usecase key={index} {...usecase} />
+        ))}
+      </div>
     );
 
   return (
@@ -43,7 +122,7 @@ const PromptTemplateList = ({ initial }: { initial: UsecaseProps[] }) => {
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 md:gap-4 mx-auto justify-items-center">
           {[...Array(4)].map((_, index) => (
-            <Card key={index} className={styles.card} radius="sm">
+            <Card key={index} className={styles['empty-card']} radius="sm">
               <div className="space-y-3">
                 <Skeleton className="w-3/5 rounded-lg">
                   <div className="h-3 w-3/5 rounded-lg bg-default-200"></div>

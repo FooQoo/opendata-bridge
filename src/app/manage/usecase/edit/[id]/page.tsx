@@ -1,5 +1,5 @@
-import UsecaseCreateForm from 'app/usecase/create/UsecaseCreateForm';
-import UsecaseEditForm from 'app/usecase/edit/[id]/UsecaseEditForm';
+import UsecaseCreateForm from 'app/manage/usecase/create/UsecaseCreateForm';
+import UsecaseEditForm from 'app/manage/usecase/edit/[id]/UsecaseEditForm';
 import usecaseDetailFeatcher from 'lib/axios/usecaseDetailFetcher';
 
 const CreateUsecase = async ({ params }: { params: { id: string } }) => {
