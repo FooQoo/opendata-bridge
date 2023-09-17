@@ -72,12 +72,12 @@ export function Chat({ id, initialMessages, usecase }: ChatProps) {
           <div className="max-w-2xl">
             <ChatList messages={messages} />
             <ChatScrollAnchor trackVisibility={isLoading} />
-            {/* {isLimit && isLoading == false && canConfirmFile && (
+            {isLoading == false && canConfirmFile && (
               <ConfirmFileModal
                 append={append}
                 setCanConfirmFile={setCanConfirmFile}
               />
-            )} */}
+            )}
             {isLoading === false && isLimit === false && (
               <div className="space-y-10">
                 <div className="grid md:grid-cols-3 gap-4 md:w-full md:mx-0 mx-[20%]">
