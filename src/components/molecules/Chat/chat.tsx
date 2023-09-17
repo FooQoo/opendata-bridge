@@ -59,7 +59,7 @@ export function Chat({ id, initialMessages, usecase }: ChatProps) {
 
   const isLimit =
     messages.filter((message) => message.role === 'user').length >=
-      MAX_QUESTION_COUNT || !canConfirmFile;
+    MAX_QUESTION_COUNT;
 
   return (
     <>
@@ -72,25 +72,29 @@ export function Chat({ id, initialMessages, usecase }: ChatProps) {
           <div className="max-w-2xl">
             <ChatList messages={messages} />
             <ChatScrollAnchor trackVisibility={isLoading} />
-            {isLoading == false && canConfirmFile && (
+            {/* {isLoading == false && canConfirmFile && (
               <ConfirmFileModal
                 append={append}
                 setCanConfirmFile={setCanConfirmFile}
               />
-            )}
-            {isLoading === false && isLimit === false && (
+            )} */}
+            {isLoading === false && (
               <div className="space-y-10">
-                <div className="grid md:grid-cols-3 gap-4 md:w-full md:mx-0 mx-[20%]">
-                  {usecase.option.map((o) => {
-                    return (
-                      <OptionModal key={o.title} prompt={o} append={append} />
-                    );
-                  })}
-                </div>
-                <ConfirmFileModal
-                  append={append}
-                  setCanConfirmFile={setCanConfirmFile}
-                />
+                {isLimit === false && (
+                  <div className="grid md:grid-cols-3 gap-4 md:w-full md:mx-0 mx-[20%]">
+                    {usecase.option.map((o) => {
+                      return (
+                        <OptionModal key={o.title} prompt={o} append={append} />
+                      );
+                    })}
+                  </div>
+                )}
+                {canConfirmFile && (
+                  <ConfirmFileModal
+                    append={append}
+                    setCanConfirmFile={setCanConfirmFile}
+                  />
+                )}
               </div>
             )}
             {canConfirmFile === false &&
@@ -157,7 +161,7 @@ export function Chat({ id, initialMessages, usecase }: ChatProps) {
           messages={messages}
           input={input}
           setInput={setInput}
-          isLimit={isLimit}
+          isLimit={isLimit || !canConfirmFile}
         />
       )}
     </>
