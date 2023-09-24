@@ -17,13 +17,19 @@ export async function POST(req: Request) {
     return new Response(
       JSON.stringify({
         status: 500,
-      })
+      }),
+      {
+        status: 500,
+      }
     );
   }
 
   return new Response(
     JSON.stringify({
       status: 201,
-    })
+    }),
+    {
+      status: 201,
+    }
   );
 }

@@ -12,7 +12,7 @@ const usePostUsecase = () => {
 
   const callback = async (usecase: UsecaseProps) => {
     try {
-      await fetch('/api/usecase', {
+      await fetch('/api/usecase/manage', {
         method: 'POST',
         body: JSON.stringify(usecase),
       });

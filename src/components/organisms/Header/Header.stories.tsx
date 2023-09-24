@@ -15,5 +15,5 @@ type Story = StoryObj<typeof Header>;
  * to learn how to use render functions.
  */
 export const Primary: Story = {
-  render: () => <Header />,
+  render: () => <Header session={undefined} />,
 };

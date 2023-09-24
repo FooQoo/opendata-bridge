@@ -1,10 +1,19 @@
-import UsercaseList from 'components/organisms/UsecaseList/UsecaseList';
+import { authOptions } from 'app/api/auth/[...nextauth]/route';
 import { getSdk } from 'lib/generated/client';
 import { gqlClient } from 'lib/gqlClient/gqlCleint';
+import { getServerSession } from 'next-auth/next';
 import { UsecaseProps } from 'types/usecase';
 
 export async function POST(req: Request) {
   console.info('POST ' + req.url);
+
+  const session = await getServerSession(authOptions);
+
+  if (!session) {
+    return new Response(JSON.stringify({ status: 403 }), {
+      status: 403,
+    });
+  }
 
   const usecase: UsecaseProps = await req.json();
 

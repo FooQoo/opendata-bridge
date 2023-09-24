@@ -1,17 +1,21 @@
 import {
-  Button,
   Link,
   Navbar,
   NavbarBrand,
   NavbarContent,
   NavbarItem,
 } from '@nextui-org/react';
+import { LogoutButton } from 'components/atoms/LogoutButton/LogoutButton';
 import Image from 'next/image';
 import NextLink from 'next/link';
+import { Session } from 'next-auth';
+import { FunctionComponent } from 'react';
 
 import styles from './Header.module.scss';
 
-export const Header = () => {
+export const Header: FunctionComponent<{
+  session: Session | undefined;
+}> = async ({ session }) => {
   return (
     <Navbar className={styles.header}>
       <NavbarBrand>
@@ -55,6 +59,7 @@ export const Header = () => {
         <NavbarItem>
           <Link href="/manage/">管理ページ</Link>
         </NavbarItem>
+        <NavbarItem>{session && <LogoutButton />}</NavbarItem>
       </NavbarContent>
     </Navbar>
   );
