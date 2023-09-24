@@ -1,4 +1,6 @@
 import { OpenAIStream, StreamingTextResponse } from 'ai';
+import { authOptions } from 'app/api/auth/[...nextauth]/route';
+import { getServerSession } from 'next-auth/next';
 import { Configuration, OpenAIApi } from 'openai-edge';
 import { ChatCompletionFunctions } from 'openai-edge/types/api';
 import { SearchCondition, searchOpenData } from 'repositories/searchOpenData';
@@ -10,7 +12,7 @@ const config = new Configuration({
 const openai = new OpenAIApi(config);
 
 // IMPORTANT! Set the runtime to edge
-export const runtime = 'edge';
+// export const runtime = 'edge';
 
 const functions: ChatCompletionFunctions[] = [
   {
@@ -41,6 +43,14 @@ const functions: ChatCompletionFunctions[] = [
 ];
 
 export async function POST(req: Request) {
+  const session = await getServerSession(authOptions);
+
+  if (!session) {
+    return new Response(JSON.stringify({ status: 403 }), {
+      status: 403,
+    });
+  }
+
   const { messages } = await req.json();
 
   const response = await openai.createChatCompletion({

@@ -80,7 +80,7 @@ export function Chat({ id, initialMessages, usecase }: ChatProps) {
             )} */}
             {isLoading === false && (
               <div className="space-y-10">
-                {isLimit === false && (
+                {canConfirmFile && isLimit === false && (
                   <div className="grid md:grid-cols-3 gap-4 md:w-full md:mx-0 mx-[20%]">
                     {usecase.option.map((o) => {
                       return (
@@ -139,7 +139,7 @@ export function Chat({ id, initialMessages, usecase }: ChatProps) {
                 フィードバックにご協力いただきありがとうございました。
                 <a
                   className="flex justify-center items-center w-full my-5"
-                  href="/"
+                  href="/manage"
                 >
                   <Button className="mx-5">終了する</Button>
                 </a>

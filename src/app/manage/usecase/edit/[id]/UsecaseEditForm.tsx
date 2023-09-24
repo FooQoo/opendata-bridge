@@ -13,7 +13,7 @@ const useUpdateUsecase = () => {
   const updateUsecase = async (usecase: UsecaseProps) => {
     setLoading(true);
     try {
-      await fetch(`/api/usecase/${usecase.id}`, {
+      await fetch(`/api/usecase/manage/${usecase.id}`, {
         method: 'PUT',
         body: JSON.stringify(usecase),
       }).then((res) => {
@@ -42,7 +42,7 @@ const useDeleteUsecase = () => {
   const deleteUsecase = async (usecase: UsecaseProps) => {
     setLoading(true);
     try {
-      await fetch(`/api/usecase/${usecase.id}`, {
+      await fetch(`/api/usecase/manage/${usecase.id}`, {
         method: 'DELETE',
       }).then((res) => {
         if (!res.ok) {

@@ -1,9 +1,11 @@
+import { authOptions } from 'app/api/auth/[...nextauth]/route';
 import PromptTemplateList from 'app/manage/PromptTemplateList';
 import SearchInput from 'components/atoms/SearchInput/SearchInput';
 import { Footer } from 'components/organisms/Footer/Footer';
 import usecaseSearchFeatcher from 'lib/axios/usecaseSearchFetcher';
 import Image from 'next/image';
 import Link from 'next/link';
+import { getServerSession } from 'next-auth/next';
 
 import styles from './Home.module.scss';
 
@@ -12,13 +14,17 @@ const Home = async () => {
 
   const usercassList = await usecaseSearchFeatcher('');
 
+  const session = await getServerSession(authOptions);
+
+  const username = session?.user?.name || 'unknown';
+
   return (
     <div className="w-full md:w-[80%] mx-0 md:mx-[400px] h-screen mt-20">
       <h2 className="mx-5 text-center text-4xl">
         プロンプトテンプレート管理ページ
       </h2>
       <p className="mx-5 text-center py-4">
-        テンプレートは
+        {username}でログイン中です。テンプレートは
         <Link href={'/manage/usecase/create'} className="text-blue-700">
           テンプレート作成ページ
         </Link>
