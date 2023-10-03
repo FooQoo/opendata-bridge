@@ -26,6 +26,11 @@ const functions: ChatCompletionFunctions[] = [
           type: 'number',
           description: 'Page number. Default is 1. Minimum is 1.',
         },
+        area: {
+          type: 'string',
+          description:
+            'Search area. Please enter the geographical area you are interested in. You can specify a region, city, or prefecture.',
+        },
         keyword: {
           type: 'string',
           description:
@@ -69,6 +74,7 @@ export async function POST(req: Request) {
       if (name === 'search_opendata') {
         const searchCondition: SearchCondition = {
           page: args.page as number,
+          area: args.area as string,
           keyword: args.keyword as string,
           format: args.format as string,
           language: 'JAPANESE',
