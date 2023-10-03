@@ -8,10 +8,8 @@ import { getServerSession } from 'next-auth/next';
 config.autoAddCss = false;
 
 export const metadata = {
-  title:
-    'OpenData Bridge -日本全国に対応した「AI」搭載のオープンデータ検索サービス-',
-  description:
-    '市民とオープンデータをつなぐことを目的とした日本全国に対応した「AI」搭載のオープンデータ検索サービス',
+  title: 'OpenData Bridge -利用目的で探せるオープンデータ検索サービス-',
+  description: '利用目的で探せるオープンデータ検索サービス',
 };
 
 export default async function RootLayout({

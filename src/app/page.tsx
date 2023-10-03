@@ -19,10 +19,8 @@ const Home = async () => {
         <div className={styles.text}>
           <h1>Opendata Bridge</h1>
           <div className="py-3 text-center mx-auto w-[80%]">
-            <span className="inline-block">日本全国に対応した</span>
-            <span className="inline-block">
-              「AI」搭載のオープンデータ検索サービス
-            </span>
+            <span className="inline-block">利用目的で探せる</span>
+            <span className="inline-block">オープンデータ検索サービス</span>
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 'use client';
-import { faEdit, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   Button,
@@ -114,9 +114,7 @@ const PromptTemplateList = ({ initial }: { initial: UsecaseProps[] }) => {
 
   return (
     <>
-      <h2 className="mx-5 pb-20 text-center text-2xl">
-        プロンプトテンプレート一覧
-      </h2>
+      <h2 className="mx-5 pb-20 text-center text-2xl">オープンデータ一覧</h2>
       {!query.isTyping && (!isLoading || query.isInitialRender) ? (
         usecaseResult
       ) : (
