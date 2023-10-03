@@ -21,12 +21,12 @@ const Home = async () => {
   return (
     <div className="w-full md:w-[80%] mx-0 md:mx-[400px] h-screen mt-20">
       <h2 className="mx-5 text-center text-4xl">
-        プロンプトテンプレート管理ページ
+        オープンデータ登録情報管理ページ
       </h2>
       <p className="mx-5 text-center py-4">
-        {username}でログイン中です。テンプレートは
+        {username}でログイン中です。オープンデータの登録情報は
         <Link href={'/manage/usecase/create'} className="text-blue-700">
-          テンプレート作成ページ
+          オープンデータ登録情報作成ページ
         </Link>
         で作成できます
       </p>
