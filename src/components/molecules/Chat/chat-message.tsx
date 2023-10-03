@@ -63,22 +63,12 @@ export function ChatMessage({ message }: ChatMessageProps) {
                 </Link>
               );
             },
-            code({ node, inline, className, children, ...props }) {
-              if (children.length) {
-                if (children[0] == '▍') {
-                  return (
-                    <span className="mt-1 cursor-default animate-pulse">▍</span>
-                  );
-                }
-
-                children[0] = (children[0] as string).replace('`▍`', '▍');
-              }
-
+            code({ node, className, children, ...rest }) {
               const match = /language-(\w+)/.exec(className || '');
 
-              if (inline) {
+              if (!match) {
                 return (
-                  <code className={className} {...props}>
+                  <code className={className} {...rest}>
                     {children}
                   </code>
                 );
@@ -89,7 +79,7 @@ export function ChatMessage({ message }: ChatMessageProps) {
                   key={Math.random()}
                   language={(match && match[1]) || ''}
                   value={String(children).replace(/\n$/, '')}
-                  {...props}
+                  {...rest}
                 />
               );
             },

@@ -1,5 +1,6 @@
 export type SearchCondition = {
   page: number;
+  area: string | undefined;
   keyword: string | undefined;
   format: string | undefined;
   language: 'JAPANESE';
@@ -34,6 +35,9 @@ export const searchOpenData = async (searchOpenData: SearchCondition) => {
 
   if (searchOpenData.keyword) {
     params['keyword'] = searchOpenData.keyword;
+  }
+  if (searchOpenData.area) {
+    params['area'] = searchOpenData.area;
   }
   if (searchOpenData.format) {
     params['format'] = searchOpenData.format;
