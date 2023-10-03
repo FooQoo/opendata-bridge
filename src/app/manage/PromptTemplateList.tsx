@@ -27,7 +27,7 @@ const PromptTemplateList = ({ initial }: { initial: UsecaseProps[] }) => {
   const usecaseResult =
     data.length === 0 ? (
       <p className="text-center text-default-500 py-20">
-        プロンプトテンプレートが見つかりませんでした
+        オープンデータ登録情報が見つかりませんでした
       </p>
     ) : (
       <UsercaseList usecases={data} />

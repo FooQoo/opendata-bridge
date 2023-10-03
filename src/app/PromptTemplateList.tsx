@@ -102,7 +102,7 @@ const PromptTemplateList = ({ initial }: { initial: UsecaseProps[] }) => {
   const usecaseResult =
     data.length === 0 ? (
       <p className="text-center text-default-500 py-20">
-        プロンプトテンプレートが見つかりませんでした
+        オープンデータ登録情報が見つかりませんでした
       </p>
     ) : (
       <div className="grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-4 mx-auto justify-items-center">

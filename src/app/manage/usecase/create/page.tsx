@@ -56,7 +56,7 @@ const init = {
 const CreateUsecase = () => {
   return (
     <div className="bg-white border md:rounded-lg px-8 py-6 mx-auto my-8 w-full md:w-[80%]">
-      <h2 className="text-2xl font-medium mb-4">プロンプトテンプレート作成</h2>
+      <h2 className="text-2xl font-medium mb-4">オープンデータ登録情報作成</h2>
       <UsecaseCreateForm init={init} />
     </div>
   );
