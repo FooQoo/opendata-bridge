@@ -11,7 +11,9 @@ const SearchInput = () => {
   return (
     <div className="w-full">
       <Input
-        label={query.isTyping ? '入力中...' : 'プロンプトを検索する'}
+        label={
+          query.isTyping ? '入力中...' : 'オープンデータ登録情報を検索する'
+        }
         isClearable
         radius="lg"
         className="px-[5%] md:px-[10%] py-5"
