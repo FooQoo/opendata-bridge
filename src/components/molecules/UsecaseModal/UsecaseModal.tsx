@@ -36,7 +36,7 @@ const UsecaseModal = ({
               <p>{usecase.description}</p>
               {usecase.ogps.length > 0 && (
                 <>
-                  <p>オープンデータ掲載元</p>
+                  <p>ダウンロードページ</p>
                   {usecase.ogps.map((ogp, index) => {
                     return (
                       <Link key={index} href={ogp.url} target="_blank">
