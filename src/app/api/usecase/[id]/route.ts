@@ -39,8 +39,12 @@ export async function GET(
       id: response.promptTemplate.id,
       title: response.promptTemplate.title,
       description: response.promptTemplate.description,
-      ogps,
-      tableau: response.promptTemplate.tableau,
+      ogps: ogps.length > 0 ? ogps : [{ title: '', description: '', url: '' }],
+      tableau: response.promptTemplate.tableau || {
+        id: '',
+        title: '',
+        url: '',
+      },
       base: {
         id: response.promptTemplate.base.id,
         title: response.promptTemplate.base.title,
