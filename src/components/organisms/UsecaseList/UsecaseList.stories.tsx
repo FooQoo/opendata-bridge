@@ -20,6 +20,8 @@ Primary.args = {
       title: 'Weather Information',
       description:
         'This template is used to fetch and display weather information.',
+      ogps: [],
+      tableau: undefined,
       base: {
         id: '',
         title: 'Weather Information',
