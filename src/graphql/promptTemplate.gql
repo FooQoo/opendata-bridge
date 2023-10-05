@@ -2,6 +2,12 @@ fragment promptTemplate on PromptTemplate {
   id
   title
   description
+  dataset
+  tableau {
+    id
+    title
+    url
+  }
   base {
     id
     title

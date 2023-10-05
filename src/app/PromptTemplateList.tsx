@@ -1,5 +1,5 @@
 'use client';
-import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import { faDatabase, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   Button,
@@ -42,14 +42,35 @@ const UsecaseModal = ({
             </ModalHeader>
             <ModalBody>
               <p>{usecase.description}</p>
-              <p>WIP: ダウンロード可能なファイル一覧のリンクを記載する</p>
+
+              {usecase.ogps.length > 0 && (
+                <>
+                  <p>オープンデータ掲載元</p>
+                  {usecase.ogps.map((ogp, index) => {
+                    return (
+                      <Link key={index} href={ogp.url} target="_blank">
+                        {ogp.title}
+                      </Link>
+                    );
+                  })}
+                </>
+              )}
+
+              {usecase.tableau && (
+                <>
+                  <p>Tableau Public</p>
+                  <Link href={usecase.tableau.url} target="_blank">
+                    {usecase.tableau.title}
+                  </Link>
+                </>
+              )}
             </ModalBody>
             <ModalFooter>
               <div className="flex w-full">
                 <div className="flex-grow"></div>
                 <div className="flex-none">
                   <Button color="danger" variant="light" onPress={onClose}>
-                    あとで見る
+                    閉じる
                   </Button>
                 </div>
               </div>

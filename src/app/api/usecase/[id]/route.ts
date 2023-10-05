@@ -3,6 +3,7 @@
 import { getSdk } from 'lib/generated/client';
 import { gqlClient } from 'lib/gqlClient/gqlCleint';
 import { countGood } from 'lib/postgres/feedback';
+import fetchOgp from 'service/ogpService';
 import { UsecaseProps } from 'types/usecase';
 
 export async function GET(
@@ -27,11 +28,19 @@ export async function GET(
 
   const goodCount = await countGood(response.promptTemplate.id);
 
+  const ogps = await Promise.all(
+    response.promptTemplate.dataset.map(async (v) => {
+      return await fetchOgp(v);
+    })
+  );
+
   return new Response(
     JSON.stringify({
       id: response.promptTemplate.id,
       title: response.promptTemplate.title,
       description: response.promptTemplate.description,
+      ogps,
+      tableau: response.promptTemplate.tableau,
       base: {
         id: response.promptTemplate.base.id,
         title: response.promptTemplate.base.title,

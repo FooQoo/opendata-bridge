@@ -2,6 +2,7 @@ import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   Button,
+  Link,
   Modal,
   ModalBody,
   ModalContent,
@@ -9,7 +10,6 @@ import {
   ModalHeader,
   useDisclosure,
 } from '@nextui-org/react';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { getUsecaseUrl, UsecaseProps } from 'types/usecase';
 
@@ -34,6 +34,27 @@ const UsecaseModal = ({
             </ModalHeader>
             <ModalBody>
               <p>{usecase.description}</p>
+              {usecase.ogps.length > 0 && (
+                <>
+                  <p>オープンデータ掲載元</p>
+                  {usecase.ogps.map((ogp, index) => {
+                    return (
+                      <Link key={index} href={ogp.url} target="_blank">
+                        {ogp.title}
+                      </Link>
+                    );
+                  })}
+                </>
+              )}
+
+              {usecase.tableau && (
+                <>
+                  <p>Tableau Public</p>
+                  <Link href={usecase.tableau.url} target="_blank">
+                    {usecase.tableau.title}
+                  </Link>
+                </>
+              )}
             </ModalBody>
             <ModalFooter>
               <div className="flex w-full">

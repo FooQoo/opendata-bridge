@@ -32,6 +32,18 @@ export async function PUT(
       input: {
         title: usecase.title,
         description: usecase.description,
+        dataset: usecase.ogps.map((ogp) => ogp.url),
+        tableau: {
+          update: {
+            data: {
+              title: usecase.tableau!.title,
+              url: usecase.tableau!.url,
+            },
+            where: {
+              id: usecase.tableau!.id,
+            },
+          },
+        },
         base: {
           update: {
             data: {

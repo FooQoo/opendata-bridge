@@ -6,6 +6,12 @@ const init = {
   title: '特定のエリアの公園を調査する',
   description:
     '特定のエリアの公園に関する情報を検索できます。あなたはどこの公園をお探しですか？',
+  ogps: [{ title: '', description: '', url: '' }],
+  tableau: {
+    id: '',
+    title: '',
+    url: '',
+  },
   base: {
     id: '', // 空文字として送信する
     title: '公園を探す',

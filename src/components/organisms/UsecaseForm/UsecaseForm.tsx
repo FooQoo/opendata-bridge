@@ -12,7 +12,7 @@ const UsecaseForm = ({
     <form>
       <div className="mb-4">
         <label className="block text-gray-700 font-medium mb-2">
-          プロンプト名
+          オープンデータ登録情報名
         </label>
         <input
           type="text"
@@ -25,7 +25,7 @@ const UsecaseForm = ({
       </div>
       <div className="mb-4">
         <label className="block text-gray-700 font-medium mb-2">
-          プロンプトの説明
+          オープンデータ登録情報の説明
         </label>
         <input
           type="text"
@@ -36,6 +36,63 @@ const UsecaseForm = ({
             setUsecase({ ...usecase, description: e.target.value })
           }
           placeholder="特定のエリアの公園に関する情報を検索できます。あなたはどこの公園をお探しですか？"
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block text-gray-700 font-medium mb-2">
+          データセットのURL
+        </label>
+        <input
+          type="text"
+          className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400"
+          required
+          value={usecase.ogps[0].url}
+          onChange={(e) =>
+            setUsecase({
+              ...usecase,
+              ogps: [{ title: '', description: '', url: e.target.value }],
+            })
+          }
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block text-gray-700 font-medium mb-2">
+          Tableau Publicのタイトル
+        </label>
+        <input
+          type="text"
+          className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400"
+          required
+          value={usecase.tableau?.title || ''}
+          onChange={(e) =>
+            setUsecase({
+              ...usecase,
+              tableau: {
+                ...usecase.tableau!,
+                title: e.target.value || '',
+              },
+            })
+          }
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block text-gray-700 font-medium mb-2">
+          Tableau PublicのURL
+        </label>
+        <input
+          type="text"
+          className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400"
+          required
+          value={usecase.tableau?.url || ''}
+          onChange={(e) =>
+            setUsecase({
+              ...usecase,
+              tableau: {
+                ...usecase.tableau!,
+                url: e.target.value,
+              },
+            })
+          }
         />
       </div>
       <div className="mb-4">
