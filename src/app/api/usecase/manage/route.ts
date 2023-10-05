@@ -23,14 +23,15 @@ export async function POST(req: Request) {
         title: usecase.title,
         description: usecase.description,
         dataset: usecase.ogps.filter((opg) => opg.url).map((ogp) => ogp.url),
-        tableau: usecase.tableau
-          ? {
-              create: {
-                title: usecase.tableau.title,
-                url: usecase.tableau.url,
-              },
-            }
-          : undefined,
+        tableau:
+          usecase.tableau && usecase.tableau.title && usecase.tableau.url
+            ? {
+                create: {
+                  title: usecase.tableau.title,
+                  url: usecase.tableau.url,
+                },
+              }
+            : undefined,
         base: {
           create: {
             title: usecase.base.title,

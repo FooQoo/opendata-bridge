@@ -33,25 +33,26 @@ export async function PUT(
         title: usecase.title,
         description: usecase.description,
         dataset: usecase.ogps.filter((ogp) => ogp.url).map((ogp) => ogp.url),
-        tableau: usecase.tableau
-          ? {
-              upsert: {
-                data: {
-                  create: {
-                    title: usecase.tableau.title,
-                    url: usecase.tableau.url,
+        tableau:
+          usecase.tableau && usecase.tableau.title && usecase.tableau.url
+            ? {
+                upsert: {
+                  data: {
+                    create: {
+                      title: usecase.tableau.title,
+                      url: usecase.tableau.url,
+                    },
+                    update: {
+                      title: usecase.tableau.title,
+                      url: usecase.tableau.url,
+                    },
                   },
-                  update: {
-                    title: usecase.tableau.title,
-                    url: usecase.tableau.url,
+                  where: {
+                    id: usecase.tableau.id,
                   },
                 },
-                where: {
-                  id: usecase.tableau.id,
-                },
-              },
-            }
-          : undefined,
+              }
+            : undefined,
         base: {
           update: {
             data: {
