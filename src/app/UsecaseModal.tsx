@@ -62,11 +62,8 @@ const UsecaseModal = ({
                   <Button color="danger" variant="light" onPress={onClose}>
                     閉じる
                   </Button>
-                </div>
-                <div className="flex-none">
                   <Button
-                    color="danger"
-                    variant="light"
+                    color="primary"
                     onPress={() => router.push(`/usecase/${usecase.id}`)}
                   >
                     詳細をみる
