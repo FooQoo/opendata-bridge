@@ -2,8 +2,6 @@ import PromptTemplateList from 'app/PromptTemplateList';
 import SearchInput from 'components/atoms/SearchInput/SearchInput';
 import { Footer } from 'components/organisms/Footer/Footer';
 import usecaseSearchFeatcher from 'lib/axios/usecaseSearchFetcher';
-import Image from 'next/image';
-import Link from 'next/link';
 
 import styles from './Home.module.scss';
 
