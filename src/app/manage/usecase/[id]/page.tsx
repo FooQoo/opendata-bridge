@@ -1,6 +1,8 @@
 import { Chat } from 'components/molecules/Chat/chat';
 import usecaseDetailFeatcher from 'lib/axios/usecaseDetailFetcher';
 
+export const runtime = 'edge';
+
 const Detail = async ({ params }: { params: { id: string } }) => {
   console.info(`Detail: ${params.id}`);
 
