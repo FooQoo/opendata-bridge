@@ -48,13 +48,13 @@ const functions: ChatCompletionFunctions[] = [
 ];
 
 export async function POST(req: Request) {
-  const session = await getServerSession(authOptions);
+  // const session = await getServerSession(authOptions);
 
-  if (!session) {
-    return new Response(JSON.stringify({ status: 403 }), {
-      status: 403,
-    });
-  }
+  // if (!session) {
+  //   return new Response(JSON.stringify({ status: 403 }), {
+  //     status: 403,
+  //   });
+  // }
 
   const { messages } = await req.json();
 
