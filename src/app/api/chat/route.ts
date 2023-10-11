@@ -12,8 +12,7 @@ const config = new Configuration({
 const openai = new OpenAIApi(config);
 
 // IMPORTANT! Set the runtime to edge
-export const runtime =
-  process.env.NODE_ENV === 'development' ? 'nodejs' : 'edge';
+export const runtime = 'edge';
 
 const functions: ChatCompletionFunctions[] = [
   {
