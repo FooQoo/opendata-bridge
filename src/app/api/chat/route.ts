@@ -15,10 +15,6 @@ const openai = new OpenAIApi(
 // IMPORTANT! Set the runtime to edge
 export const runtime = 'nodejs';
 
-export const config = {
-  supportsResponseStreaming: true,
-};
-
 const functions: ChatCompletionFunctions[] = [
   {
     name: 'search_opendata',
