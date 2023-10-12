@@ -6,13 +6,18 @@ import { ChatCompletionFunctions } from 'openai-edge/types/api';
 import { SearchCondition, searchOpenData } from 'repositories/searchOpenData';
 
 // Create an OpenAI API client (that's edge friendly!)
-const config = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-const openai = new OpenAIApi(config);
+const openai = new OpenAIApi(
+  new Configuration({
+    apiKey: process.env.OPENAI_API_KEY,
+  })
+);
 
 // IMPORTANT! Set the runtime to edge
 export const runtime = 'nodejs';
+
+export const config = {
+  supportsResponseStreaming: true,
+};
 
 const functions: ChatCompletionFunctions[] = [
   {
