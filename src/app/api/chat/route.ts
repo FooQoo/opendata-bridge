@@ -1,21 +1,36 @@
 import { OpenAIStream, StreamingTextResponse } from 'ai';
+import { OpenAI } from 'openai';
 // import { authOptions } from 'app/api/auth/[...nextauth]/route';
 // import { getServerSession } from 'next-auth';
-import { Configuration, OpenAIApi } from 'openai-edge';
-import { ChatCompletionFunctions } from 'openai-edge/types/api';
 import { SearchCondition, searchOpenData } from 'repositories/searchOpenData';
 
 // Create an OpenAI API client (that's edge friendly!)
-const openai = new OpenAIApi(
-  new Configuration({
-    apiKey: process.env.OPENAI_API_KEY,
-  })
-);
+// const openai = new OpenAIApi(
+//   new Configuration({
+//     apiKey: process.env.OPENAI_API_KEY,
+//   })
+// );
+
+const resource = process.env.AZURE_OPENAI_RESOURCE || '';
+const model = process.env.AZURE_OPENAI_MODEL || '';
+
+const apiKey = process.env.AZURE_OPENAI_API_KEY;
+if (!apiKey) {
+  throw new Error('AZURE_OPENAI_API_KEY is missing from the environment.');
+}
+
+// Azure OpenAI requires a custom baseURL, api-version query param, and api-key header.
+const openai = new OpenAI({
+  apiKey,
+  baseURL: `https://${resource}.openai.azure.com/openai/deployments/${model}`,
+  defaultQuery: { 'api-version': '2023-07-01-preview' },
+  defaultHeaders: { 'api-key': apiKey },
+});
 
 // IMPORTANT! Set the runtime to edge
 export const runtime = 'edge';
 
-const functions: ChatCompletionFunctions[] = [
+const functions = [
   {
     name: 'search_opendata',
     description:
@@ -59,12 +74,12 @@ export async function POST(req: Request) {
 
   const { messages } = await req.json();
 
-  const response = await openai.createChatCompletion({
-    model: 'gpt-4',
-    stream: true,
+  const response = await openai.chat.completions.create({
+    model,
     messages,
     functions,
     temperature: 0.0,
+    stream: true,
   });
 
   const stream = OpenAIStream(response, {
@@ -84,10 +99,10 @@ export async function POST(req: Request) {
         const opendata = await searchOpenData(searchCondition);
 
         const newMessages = createFunctionCallMessages(opendata);
-        return openai.createChatCompletion({
+        return openai.chat.completions.create({
           messages: [...messages, ...newMessages],
           stream: true,
-          model: 'gpt-4',
+          model,
           functions,
           temperature: 0.0,
         });
