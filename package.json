@@ -16,7 +16,7 @@
     "codegen": "graphql-codegen -r dotenv/config --config codegen.ts"
   },
   "dependencies": {
-    "@as-integrations/next": "^2.0.2",
+    "@as-integrations/next": "^3.0.0",
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
     "@fortawesome/free-regular-svg-icons": "^6.4.2",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
