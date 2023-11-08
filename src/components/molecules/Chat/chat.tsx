@@ -15,22 +15,7 @@ import { EmptyScreen } from 'components/molecules/Chat/empty-screen';
 import OptionModal from 'components/molecules/Chat/option-modal';
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
-import { Feedback } from 'types/feedback';
 import { UsecaseProps } from 'types/usecase';
-
-const postFeedback = async (feedback: Feedback) => {
-  try {
-    await fetch('/api/feedback', {
-      method: 'POST',
-      body: JSON.stringify(feedback),
-    });
-  } catch (e) {
-    console.error(e);
-    return false;
-  }
-
-  return true;
-};
 
 export interface ChatProps extends React.ComponentProps<'div'> {
   initialMessages?: Message[];
@@ -107,11 +92,6 @@ export function Chat({ id, initialMessages, usecase }: ChatProps) {
                       className="mx-5"
                       endContent={<FontAwesomeIcon icon={faThumbsUp} />}
                       onPress={async () => {
-                        await postFeedback({
-                          usercaseId: id,
-                          isGood: true,
-                          isBad: false,
-                        });
                         setIsFeedbacked(true);
                       }}
                     >
@@ -121,11 +101,6 @@ export function Chat({ id, initialMessages, usecase }: ChatProps) {
                       className="mx-5"
                       endContent={<FontAwesomeIcon icon={faFaceFrown} />}
                       onPress={async () => {
-                        await postFeedback({
-                          usercaseId: id,
-                          isGood: false,
-                          isBad: true,
-                        });
                         setIsFeedbacked(true);
                       }}
                     >

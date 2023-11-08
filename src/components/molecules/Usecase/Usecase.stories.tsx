@@ -35,5 +35,4 @@ Primary.args = {
       content: '',
     },
   ],
-  goodCount: 0,
 };

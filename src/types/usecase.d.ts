@@ -8,7 +8,6 @@ export type UsecaseProps = {
   tableau: Tableau | undefined;
   base: Prompt;
   option: Prompt[];
-  goodCount: number;
   updatedAt: string;
 };
 
@@ -27,6 +26,6 @@ export type Prompt = {
 export const getUsecaseUrl = (id: string) => `/manage/usecase/${id}`;
 
 export const getMessageSearch = (usecase: UsecaseProps) => {
-  return `以下のプロンプトを参考にしてオープンデータを検索してみましょう。  
+  return `以下のプロンプトを参考にしてオープンデータを検索してみましょう。
 ${usecase.description}`;
 };

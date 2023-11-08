@@ -2,7 +2,6 @@
 
 import { getSdk } from 'lib/generated/client';
 import { gqlClient } from 'lib/gqlClient/gqlCleint';
-import { countGood } from 'lib/postgres/feedback';
 import fetchOgp from 'service/ogpService';
 import { UsecaseProps } from 'types/usecase';
 
@@ -25,8 +24,6 @@ export async function GET(
       status: 404,
     });
   }
-
-  const goodCount = await countGood(response.promptTemplate.id);
 
   const ogps = await Promise.all(
     response.promptTemplate.dataset.map(async (v) => {
@@ -55,7 +52,6 @@ export async function GET(
         title: option.title,
         content: option.content,
       })),
-      goodCount,
     } as UsecaseProps),
     {
       status: 200,
