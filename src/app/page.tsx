@@ -1,14 +1,13 @@
 import PromptTemplateList from 'app/PromptTemplateList';
 import SearchInput from 'components/atoms/SearchInput/SearchInput';
 import { Footer } from 'components/organisms/Footer/Footer';
-import usecaseSearchFeatcher from 'lib/axios/usecaseSearchFetcher';
 
 import styles from './Home.module.scss';
 
-const Home = async () => {
+const Home = () => {
   // If you use ssg, you can use the following code.
 
-  const usercassList = await usecaseSearchFeatcher('');
+  // const usercassList = await usecaseSearchFeatcher('');
 
   return (
     <div className="w-full md:w-[80%] mx-0 md:mx-[400px] h-screen">
@@ -27,7 +26,7 @@ const Home = async () => {
         <SearchInput />
       </div>
 
-      <PromptTemplateList initial={usercassList} />
+      <PromptTemplateList initial={[]} />
       <Footer />
     </div>
   );

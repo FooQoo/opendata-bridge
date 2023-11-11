@@ -2,7 +2,6 @@ import { authOptions } from 'app/api/auth/[...nextauth]/route';
 import PromptTemplateList from 'app/manage/PromptTemplateList';
 import SearchInput from 'components/atoms/SearchInput/SearchInput';
 import { Footer } from 'components/organisms/Footer/Footer';
-import usecaseSearchFeatcher from 'lib/axios/usecaseSearchFetcher';
 import Image from 'next/image';
 import Link from 'next/link';
 import { getServerSession } from 'next-auth/next';
@@ -12,7 +11,7 @@ import styles from './Home.module.scss';
 const Home = async () => {
   // If you use ssg, you can use the following code.
 
-  const usercassList = await usecaseSearchFeatcher('');
+  // const usercassList = await usecaseSearchFeatcher('');
 
   const session = await getServerSession(authOptions);
 
@@ -34,7 +33,7 @@ const Home = async () => {
         <SearchInput />
       </div>
 
-      <PromptTemplateList initial={usercassList} />
+      <PromptTemplateList initial={[]} />
       <Link
         className="relative"
         href={
