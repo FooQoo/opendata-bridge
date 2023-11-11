@@ -11,22 +11,6 @@ import { SearchCondition, searchOpenData } from 'repositories/searchOpenData';
 //   })
 // );
 
-const resource = process.env.AZURE_OPENAI_RESOURCE || '';
-const model = process.env.AZURE_OPENAI_MODEL || '';
-
-const apiKey = process.env.AZURE_OPENAI_API_KEY;
-if (!apiKey) {
-  throw new Error('AZURE_OPENAI_API_KEY is missing from the environment.');
-}
-
-// Azure OpenAI requires a custom baseURL, api-version query param, and api-key header.
-const openai = new OpenAI({
-  apiKey,
-  baseURL: `https://${resource}.openai.azure.com/openai/deployments/${model}`,
-  defaultQuery: { 'api-version': '2023-07-01-preview' },
-  defaultHeaders: { 'api-key': apiKey },
-});
-
 // IMPORTANT! Set the runtime to edge
 // export const runtime = 'edge';
 
@@ -64,6 +48,22 @@ const functions = [
 ];
 
 export async function POST(req: Request) {
+  const resource = process.env.AZURE_OPENAI_RESOURCE || '';
+  const model = process.env.AZURE_OPENAI_MODEL || '';
+
+  const apiKey = process.env.AZURE_OPENAI_API_KEY;
+  if (!apiKey) {
+    throw new Error('AZURE_OPENAI_API_KEY is missing from the environment.');
+  }
+
+  // Azure OpenAI requires a custom baseURL, api-version query param, and api-key header.
+  const openai = new OpenAI({
+    apiKey,
+    baseURL: `https://${resource}.openai.azure.com/openai/deployments/${model}`,
+    defaultQuery: { 'api-version': '2023-07-01-preview' },
+    defaultHeaders: { 'api-key': apiKey },
+  });
+
   // const session = await getServerSession(authOptions);
 
   // if (!session) {
