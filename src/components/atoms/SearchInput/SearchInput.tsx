@@ -23,7 +23,6 @@ const SearchInput = () => {
             'bg-transparent',
             'text-black/90',
             'placeholder:text-default-700/50',
-            'text-md',
           ],
           innerWrapper: 'bg-transparent',
           inputWrapper: [
@@ -38,11 +37,8 @@ const SearchInput = () => {
         }}
         placeholder="例:公園"
         startContent={
-          <div className="text-black/50 text-slate-400 pointer-events-none flex justify-center items-center w-[24px] h-[36px]">
-            <FontAwesomeIcon
-              className="w-[24px] h-[24px]"
-              icon={faMagnifyingGlass}
-            />
+          <div className="text-black/50 text-slate-400 pointer-events-none flex justify-center items-center h-[18px]">
+            <FontAwesomeIcon icon={faMagnifyingGlass} />
           </div>
         }
         value={query.query}
