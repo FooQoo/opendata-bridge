@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "PORT=8080 next start",
     "lint": "next lint & stylelint src/**/*.{css,scss,sass}",
     "lint:fix": "next lint --fix",
     "stylelint:fix": "stylelint src/**/*.{css,scss,sass} --fix",
