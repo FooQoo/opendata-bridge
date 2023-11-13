@@ -67,8 +67,8 @@ const PromptTemplateList = ({ initial }: { initial: UsecaseProps[] }) => {
       {!query.isTyping && (!isLoading || query.isInitialRender) ? (
         usecaseResult
       ) : (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 md:gap-4 mx-auto justify-items-center">
-          {[...Array(4)].map((_, index) => (
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 md:gap-4 mx-4 justify-items-center">
+          {[...Array(3)].map((_, index) => (
             <Card key={index} className={styles['empty-card']} radius="sm">
               <div className="space-y-3">
                 <Skeleton className="w-3/5 rounded-lg">

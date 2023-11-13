@@ -57,7 +57,7 @@ export const Header: FunctionComponent<{
           </Button>
         </NavbarItem> */}
         <NavbarItem>
-          <Link href="/manage/">管理ページ</Link>
+          <Link href="/manage/">管理</Link>
         </NavbarItem>
         <NavbarItem>{session && <LogoutButton />}</NavbarItem>
       </NavbarContent>
