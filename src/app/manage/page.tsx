@@ -37,7 +37,7 @@ const Home = async () => {
       <Link
         className="relative"
         href={
-          'https://github.com/FooQoo/japan-opendata-chatgpt-plugin/blob/main/docs/usage.md'
+          'https://github.com/dx-junkyard/japan-opendata-chatgpt-plugin/blob/main/docs/usage.md'
         }
         target="_blank"
       >
