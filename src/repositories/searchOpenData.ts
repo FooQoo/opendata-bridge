@@ -53,7 +53,11 @@ export const searchOpenData = async (searchOpenData: SearchCondition) => {
 
   console.info(`${baseUrl}?${urlSearchParam}`);
 
-  const reponse = await fetch(`${baseUrl}?${urlSearchParam}`);
+  const reponse = await fetch(`${baseUrl}?${urlSearchParam}`, {
+    headers: {
+      Authorization: `Bearer ${process.env.SEARCH_OPENDATA_API_KEY}`,
+    },
+  });
 
   const data = await reponse.json();
 
