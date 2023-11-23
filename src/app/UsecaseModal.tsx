@@ -9,14 +9,14 @@ import {
   ModalHeader,
 } from '@nextui-org/react';
 import { useRouter } from 'next/navigation';
-import { UsecaseProps } from 'types/usecase';
+import { Project } from 'types/project';
 
 const UsecaseModal = ({
   usecase,
   isOpen,
   onOpenChange,
 }: {
-  usecase: UsecaseProps;
+  usecase: Project;
   isOpen: boolean;
   onOpenChange: () => void;
 }) => {
@@ -33,10 +33,10 @@ const UsecaseModal = ({
             <ModalBody>
               <p>{usecase.description}</p>
 
-              {usecase.ogps.length > 0 && (
+              {usecase.resources.length > 0 && (
                 <>
                   <p>ダウンロードページ</p>
-                  {usecase.ogps.map((ogp, index) => {
+                  {usecase.resources.map((ogp, index) => {
                     return (
                       <Link key={index} href={ogp.url} target="_blank">
                         {ogp.title}
@@ -46,14 +46,14 @@ const UsecaseModal = ({
                 </>
               )}
 
-              {usecase.tableau && (
+              {/* {usecase.tableau && (
                 <>
                   <p>Tableau Public</p>
                   <Link href={usecase.tableau.url} target="_blank">
                     {usecase.tableau.title}
                   </Link>
                 </>
-              )}
+              )} */}
             </ModalBody>
             <ModalFooter>
               <div className="flex w-full">

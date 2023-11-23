@@ -2,8 +2,7 @@
 
 import { getSdk } from 'lib/generated/client';
 import { gqlClient } from 'lib/gqlClient/gqlCleint';
-import fetchOgp from 'service/ogpService';
-import { UsecaseProps } from 'types/usecase';
+import { Project, Resource } from 'types/project';
 
 export async function GET(
   req: Request,
@@ -15,46 +14,36 @@ export async function GET(
 ) {
   console.info('GET ' + req.url);
 
-  let response = await getSdk(gqlClient).fetchPromptTemplate({
-    id: params.id,
-  });
+  const project = (
+    await getSdk(gqlClient).getProject({
+      id: params.id,
+    })
+  ).project?.data;
 
-  if (!response.promptTemplate) {
+  if (!project) {
     return new Response(JSON.stringify({ status: 404 }), {
       status: 404,
     });
   }
 
-  const ogps = await Promise.all(
-    response.promptTemplate.dataset.map(async (v) => {
-      return await fetchOgp(v);
-    })
-  );
+  const projectAttribute = project?.attributes;
+  const resources: Resource[] =
+    (projectAttribute?.resources?.data || []).map((attribute) => {
+      return {
+        title: attribute?.attributes?.title || '',
+        url: attribute?.attributes?.url || '',
+      };
+    }) || [];
+  const json: Project = {
+    id: project.id || '',
+    title: projectAttribute?.title || '',
+    description: projectAttribute?.description || '',
+    resources,
+    updatedAt:
+      projectAttribute?.updatedAt.split('T')[0].replace(/-/g, '/') || '',
+  };
 
-  return new Response(
-    JSON.stringify({
-      id: response.promptTemplate.id,
-      title: response.promptTemplate.title,
-      description: response.promptTemplate.description,
-      ogps: ogps.length > 0 ? ogps : [{ title: '', description: '', url: '' }],
-      tableau: response.promptTemplate.tableau || {
-        id: '',
-        title: '',
-        url: '',
-      },
-      base: {
-        id: response.promptTemplate.base.id,
-        title: response.promptTemplate.base.title,
-        content: response.promptTemplate.base.content,
-      },
-      option: response.promptTemplate.option.map((option) => ({
-        id: option.id,
-        title: option.title,
-        content: option.content,
-      })),
-    } as UsecaseProps),
-    {
-      status: 200,
-    }
-  );
+  return new Response(JSON.stringify(json), {
+    status: 200,
+  });
 }

@@ -1,9 +1,8 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
-import { getSdk } from 'lib/generated/client';
+import { getSdk, ProjectEntity } from 'lib/generated/client';
 import { gqlClient } from 'lib/gqlClient/gqlCleint';
-import fetchOgp from 'service/ogpService';
-import { UsecaseProps } from 'types/usecase';
+import { Project, Resource } from 'types/project';
 
 export async function GET(req: Request) {
   console.info('GET ' + req.url);
@@ -13,56 +12,34 @@ export async function GET(req: Request) {
 
   const queryList = query.split(/ |　/).map((query) => query.trim());
 
-  const response = await getSdk(gqlClient).fetchPromptTemplates({
-    query: queryList.at(0) || '',
-  });
+  const response: ProjectEntity[] =
+    (query
+      ? (
+          await getSdk(gqlClient).searchProject({
+            query: queryList.at(0) || '',
+          })
+        ).search?.projects
+      : (await getSdk(gqlClient).fetchProject()).projects
+    )?.data || [];
 
-  const filteredResponse = response.promptTemplates.filter((promptTemplate) => {
-    return queryList.slice(1).every((query) => {
-      return (
-        promptTemplate.title.includes(query) ||
-        promptTemplate.description.includes(query) ||
-        promptTemplate.base.title.includes(query) ||
-        promptTemplate.base.content.includes(query) ||
-        promptTemplate.option.some((option) => {
-          return option.title.includes(query) || option.content.includes(query);
-        })
-      );
-    });
+  const json: Project[] = response.map((project) => {
+    const projectAttribute = project?.attributes;
+    const resources: Resource[] =
+      (projectAttribute?.resources?.data || []).map((attribute) => {
+        return {
+          title: attribute?.attributes?.title || '',
+          url: attribute?.attributes?.url || '',
+        };
+      }) || [];
+    return {
+      id: project.id || '',
+      title: projectAttribute?.title || '',
+      description: projectAttribute?.description || '',
+      resources,
+      updatedAt:
+        projectAttribute?.updatedAt.split('T')[0].replace(/-/g, '/') || '',
+    };
   });
-
-  const json = await Promise.all(
-    filteredResponse.map(async (promptTemplate) => {
-      const ogps = await Promise.all(
-        promptTemplate.dataset.map(async (v) => {
-          return await fetchOgp(v);
-        })
-      );
-      return {
-        id: promptTemplate.id,
-        title: promptTemplate.title,
-        description: promptTemplate.description,
-        ogps,
-        tableau: promptTemplate.tableau
-          ? {
-              title: promptTemplate.tableau.title,
-              url: promptTemplate.tableau.url,
-            }
-          : undefined,
-        base: {
-          id: promptTemplate.base.id,
-          title: promptTemplate.base.title,
-          content: promptTemplate.base.content,
-        },
-        option: promptTemplate.option.map((option) => ({
-          id: option.id,
-          title: option.title,
-          content: option.content,
-        })),
-        updatedAt: promptTemplate.updatedAt.split('T')[0].replace(/-/g, '/'),
-      } as UsecaseProps;
-    })
-  );
 
   return new Response(JSON.stringify(json), {
     status: 200,
