@@ -1,0 +1,7 @@
+# query getEditorByName($username: String) {
+#   editor(where: { username: $username }) {
+#     id
+#     username
+#     password
+#   }
+# }
