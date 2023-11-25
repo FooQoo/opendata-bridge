@@ -11,6 +11,7 @@ import {
   useDisclosure,
 } from '@nextui-org/react';
 import { useRouter } from 'next/navigation';
+import { Project } from 'types/project';
 import { getUsecaseUrl, UsecaseProps } from 'types/usecase';
 
 const UsecaseModal = ({
@@ -18,7 +19,7 @@ const UsecaseModal = ({
   isOpen,
   onOpenChange,
 }: {
-  usecase: UsecaseProps;
+  usecase: Project;
   isOpen: boolean;
   onOpenChange: () => void;
 }) => {
@@ -34,10 +35,11 @@ const UsecaseModal = ({
             </ModalHeader>
             <ModalBody>
               <p>{usecase.description}</p>
-              {usecase.ogps.length > 0 && (
+
+              {usecase.resources.length > 0 && (
                 <>
                   <p>ダウンロードページ</p>
-                  {usecase.ogps.map((ogp, index) => {
+                  {usecase.resources.map((ogp, index) => {
                     return (
                       <Link key={index} href={ogp.url} target="_blank">
                         {ogp.title}
@@ -46,24 +48,15 @@ const UsecaseModal = ({
                   })}
                 </>
               )}
-
-              {usecase.tableau && (
-                <>
-                  <p>Tableau Public</p>
-                  <Link href={usecase.tableau.url} target="_blank">
-                    {usecase.tableau.title}
-                  </Link>
-                </>
-              )}
             </ModalBody>
             <ModalFooter>
               <div className="flex w-full">
                 <div className="flex-grow">
-                  <Link href={`/manage/usecase/edit/${usecase.id}`}>
+                  {/* <Link href={`/manage/usecase/edit/${usecase.id}`}>
                     <Button color="danger" variant="light">
                       <FontAwesomeIcon icon={faEdit} />
                     </Button>
-                  </Link>
+                  </Link> */}
                 </div>
                 <div className="flex-none">
                   <Button color="danger" variant="light" onPress={onClose}>

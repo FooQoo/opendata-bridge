@@ -1,10 +1,11 @@
 import Usecase from 'components/molecules/Usecase/Usecase';
+import { Project } from 'types/project';
 import { UsecaseProps } from 'types/usecase';
 
 import styles from './UsecaseList.module.scss';
 
 export type UsercaseListProps = {
-  usecases: UsecaseProps[];
+  usecases: Project[];
 };
 
 const UsercaseList = ({ usecases }: UsercaseListProps) => {

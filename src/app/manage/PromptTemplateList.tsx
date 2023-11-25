@@ -7,11 +7,11 @@ import usecaseSearchFeatcher, {
 import { useRecoilValue } from 'recoil';
 import { queryState } from 'recoil/queryState';
 import useSWR from 'swr';
-import { UsecaseProps } from 'types/usecase';
+import { Project } from 'types/project';
 
 import styles from './PromptTemplateList.module.scss';
 
-const PromptTemplateList = ({ initial }: { initial: UsecaseProps[] }) => {
+const PromptTemplateList = ({ initial }: { initial: Project[] }) => {
   const query = useRecoilValue(queryState);
 
   const { data, error, isLoading } = useSWR(

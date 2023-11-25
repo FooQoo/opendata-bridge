@@ -8,5 +8,6 @@ export type Project = {
   title: string;
   description: string;
   resources: Resource[];
+  prompt: string;
   updatedAt: string;
 };

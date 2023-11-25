@@ -36,6 +36,7 @@ export async function GET(req: Request) {
       title: projectAttribute?.title || '',
       description: projectAttribute?.description || '',
       resources,
+      prompt: projectAttribute?.prompt || '',
       updatedAt:
         projectAttribute?.updatedAt.split('T')[0].replace(/-/g, '/') || '',
     };
