@@ -15,13 +15,48 @@ import { EmptyScreen } from 'components/molecules/Chat/empty-screen';
 import OptionModal from 'components/molecules/Chat/option-modal';
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
-import { UsecaseProps } from 'types/usecase';
+import { Project } from 'types/project';
 
 export interface ChatProps extends React.ComponentProps<'div'> {
   initialMessages?: Message[];
-  usecase: UsecaseProps;
+  usecase: Project;
   id: string;
 }
+
+const options = [
+  {
+    id: '1',
+    title: '類義語で検索する',
+    content: `Aを代替する検索ワードを3つ考え、それぞれについて検索を行ってください。
+その後、Aとの関連性が高い検索結果を5件教えてください。
+
+出力項目は以下でお願いいたします。
+- データセットの名称
+- データセットの説明
+`,
+  },
+  {
+    id: '2',
+    title: '詳細を確認する',
+    content: `これまで検索したデータセットを以下のフォーマットで出力してください。
+- データセットの名称
+- データセットのurl
+- データセットの説明
+- データセットのリソースの一覧
+- フォーマット
+- ライセンス
+`,
+  },
+  {
+    id: '3',
+    title: 'もっと探す',
+    content: `一つ前に検索した条件で、次のページを検索してください。
+出力項目は以下でお願いいたします。
+- データセットの名称
+- データセットの説明
+`,
+  },
+];
 
 export function Chat({ id, initialMessages, usecase }: ChatProps) {
   const { messages, append, reload, stop, isLoading, input, setInput } =
@@ -67,7 +102,7 @@ export function Chat({ id, initialMessages, usecase }: ChatProps) {
               <div className="space-y-10">
                 {canConfirmFile && isLimit === false && (
                   <div className="grid md:grid-cols-3 gap-4 md:w-full md:mx-0 mx-[20%]">
-                    {usecase.option.map((o) => {
+                    {options.map((o) => {
                       return (
                         <OptionModal key={o.title} prompt={o} append={append} />
                       );
