@@ -1,4 +1,5 @@
 import { axios } from 'lib/axios/axiosClient';
+import { Project } from 'types/project';
 import { UsecaseProps } from 'types/usecase';
 
 export const fetchUsecasePath = '/api/usecase/search';
@@ -11,6 +12,6 @@ export default function usecaseSearchFeatcher(q: string) {
       },
     })
     .then((res) => {
-      return (res.data as UsecaseProps[]) || [];
+      return (res.data as Project[]) || [];
     });
 }

@@ -3,15 +3,14 @@ import { Snippet } from '@nextui-org/react';
 import { UseChatHelpers } from 'ai/react';
 import CopyButton from 'components/atoms/CopyButton/CopyButton';
 import { useState } from 'react';
+import { Project } from 'types/project';
 import { UsecaseProps } from 'types/usecase';
 
 export function EmptyScreen({
   append,
   usecase,
-}: Pick<UseChatHelpers, 'append'> & { usecase: UsecaseProps }) {
-  const [searchPrompt, setSearchPrompt] = useState<string>(
-    usecase.base.content
-  );
+}: Pick<UseChatHelpers, 'append'> & { usecase: Project }) {
+  const [searchPrompt, setSearchPrompt] = useState<string>(usecase.prompt);
 
   return (
     <div className="mx-auto w-full max-w-full md:max-w-[80%] px-4">

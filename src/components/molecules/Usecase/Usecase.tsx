@@ -2,11 +2,12 @@ import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useDisclosure } from '@nextui-org/react';
 import UsecaseModal from 'components/molecules/UsecaseModal/UsecaseModal';
+import { Project } from 'types/project';
 import { UsecaseProps } from 'types/usecase';
 
 import styles from './Usecase.module.scss';
 
-const Usecase = (usecase: UsecaseProps) => {
+const Usecase = (usecase: Project) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (

@@ -2,7 +2,7 @@ import type { CodegenConfig } from '@graphql-codegen/cli';
 
 const config: CodegenConfig = {
   overwrite: true,
-  schema: process.env.PROMPT_TEMPLATE_ENDPOINT || '',
+  schema: (process.env.PROMPT_TEMPLATE_ENDPOINT || '') + '/graphql',
   documents: 'src/**/*.gql',
   generates: {
     './src/lib/generated/client.ts': {

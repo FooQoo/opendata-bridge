@@ -13,7 +13,7 @@ const CreateUsecase = async ({ params }: { params: { id: string } }) => {
         オープンデータ登録情報の編集
       </h2>
 
-      <UsecaseEditForm init={init} />
+      {/* <UsecaseEditForm init={init} /> */}
     </div>
   );
 };

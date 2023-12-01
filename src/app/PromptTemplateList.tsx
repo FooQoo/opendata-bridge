@@ -1,6 +1,4 @@
 'use client';
-import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Card, Skeleton, useDisclosure } from '@nextui-org/react';
 import UsecaseModal from 'app/UsecaseModal';
 import usecaseSearchFeatcher, {
@@ -9,11 +7,12 @@ import usecaseSearchFeatcher, {
 import { useRecoilValue } from 'recoil';
 import { queryState } from 'recoil/queryState';
 import useSWR from 'swr';
+import { Project } from 'types/project';
 import { UsecaseProps } from 'types/usecase';
 
 import styles from './PromptTemplateList.module.scss';
 
-const Usecase = (usecase: UsecaseProps) => {
+const Usecase = (usecase: Project) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
@@ -35,7 +34,7 @@ const Usecase = (usecase: UsecaseProps) => {
   );
 };
 
-const PromptTemplateList = ({ initial }: { initial: UsecaseProps[] }) => {
+const PromptTemplateList = ({ initial }: { initial: Project[] }) => {
   const query = useRecoilValue(queryState);
 
   const { data, error, isLoading } = useSWR(

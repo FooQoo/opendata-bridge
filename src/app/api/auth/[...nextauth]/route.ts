@@ -1,6 +1,4 @@
-import { compare } from 'bcrypt';
-import { getSdk } from 'lib/generated/client';
-import { gqlClient } from 'lib/gqlClient/gqlCleint';
+import axios from 'axios';
 import type { NextAuthOptions } from 'next-auth';
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
@@ -12,36 +10,42 @@ export const authOptions: NextAuthOptions = {
     CredentialsProvider({
       name: 'ログイン',
       credentials: {
-        username: {
-          label: 'ユーザ名',
+        email: {
+          label: 'email',
           type: 'text',
         },
         password: { label: 'パスワード', type: 'password' },
       },
       async authorize(credentials) {
-        if (!credentials?.username) {
+        if (!credentials?.email || !credentials?.password) {
           throw new Error('Wrong credentials. Try again.');
         }
 
-        const res = await getSdk(gqlClient).getEditorByName({
-          username: credentials?.username,
-        });
+        const user = await axios
+          .post(
+            (process.env.PROMPT_TEMPLATE_ENDPOINT || '') + '/api/auth/local',
+            {
+              identifier: credentials.email,
+              password: credentials.password,
+            }
+          )
+          .then((res) => {
+            return {
+              id: res.data.user.id,
+              name: res.data.user.username,
+            };
+          })
+          .catch(() => {
+            return undefined;
+          });
 
-        const { editor } = res;
-
-        if (!editor) {
-          throw new Error('Wrong credentials. Try again.');
-        }
-
-        const isValid = await compare(credentials.password, editor.password);
-
-        if (!isValid) {
+        if (!user) {
           throw new Error('Wrong credentials. Try again.');
         }
 
         return {
-          id: editor.id,
-          name: editor.username,
+          id: user.id,
+          name: user.name,
         };
       },
     }),
