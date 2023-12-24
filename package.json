@@ -44,7 +44,8 @@
     "recoil": "^0.7.7",
     "remark-gfm": "^4.0.0",
     "remark-math": "^6.0.0",
-    "swr": "2.2.4"
+    "swr": "2.2.4",
+    "husky": "8.0.3"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "5.0.0",
@@ -74,7 +75,6 @@
     "eslint-config-prettier": "9.0.0",
     "eslint-plugin-simple-import-sort": "10.0.0",
     "eslint-plugin-storybook": "^0.6.13",
-    "husky": "8.0.3",
     "lint-staged": "15.1.0",
     "postcss": "^8.4.28",
     "prettier": "3.0.3",
